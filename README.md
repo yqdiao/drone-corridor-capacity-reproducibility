@@ -36,6 +36,8 @@ machine-specific path is used after dependency installation.
   experiment and identifies its analytical responsibility.
 - `paper/current_audit.tex` — appendix audit documenting domains, parameters,
   and the numerical archive.
+- `paper/data_and_code_availability.tex` — manuscript-ready public repository
+  statement using the permanent GitHub URL.
 - `.github/workflows/reproduce.yml` — clean Linux reproduction on every push and
   pull request.
 

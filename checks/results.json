@@ -1,0 +1,2325 @@
+{
+  "status": "passed",
+  "scope": "Conditional public-type extension; T is a non-strategic marginal-profit benchmark, not an IC mechanism.",
+  "congestion_convention": "COMMON PER RESOURCE: total congestion C(S,K)*S. Resource weights h_i can differ after normalizing rho_i=d_i/h_i, c_i=t_i/h_i, k_i=kappa_i/h_i^2.",
+  "not_established": [
+    "Empirical calibration",
+    "Literature priority",
+    "Global equilibrium selection",
+    "Pairwise or sequence-dependent aircraft separation"
+  ],
+  "symbolic_checks": 37,
+  "symbolic_names": [
+    "bidder 1 clearing",
+    "bidder 2 clearing",
+    "bidder 1 envelope FOC",
+    "bidder 1 envelope SOC",
+    "bidder 1 equilibrium profit",
+    "bidder 1 global deviation loss",
+    "bidder 2 envelope FOC",
+    "bidder 2 envelope SOC",
+    "bidder 2 equilibrium profit",
+    "bidder 2 global deviation loss",
+    "heterogeneous candidate reduction",
+    "welfare FOC",
+    "welfare curvature",
+    "welfare loss identity",
+    "M vs NS welfare identity",
+    "direction of M allocation distortion",
+    "efficient_foc",
+    "efficient_curvature",
+    "price_agreement_M",
+    "price_agreement_T",
+    "welfare_rank_factorization",
+    "welfare_rank_derivative",
+    "homogeneous_loss",
+    "WM_full_release",
+    "M_revenue",
+    "M_investment_foc",
+    "T_price",
+    "T_investment_foc",
+    "alpha1_capacity_sign_numerator",
+    "homogeneous_alpha1_capacity",
+    "constant_cost_interior_price",
+    "general_efficient_foc",
+    "general_to_special_case",
+    "flight_to_resource_cost_mapping",
+    "flight_to_service_mapping",
+    "state_objective",
+    "state_capacity_derivative"
+  ],
+  "strict_domain_checks": 115,
+  "strict_domain_names": [
+    "primitive a",
+    "primitive b",
+    "primitive k",
+    "primitive R",
+    "primitive e",
+    "primitive r",
+    "beta1",
+    "beta2",
+    "fixed release: S",
+    "fixed release: p at maximum feasible service",
+    "fixed release: x1_M > 0",
+    "fixed release: x1_M < S",
+    "fixed release: service price M",
+    "fixed release: x1_T > 0",
+    "fixed release: x1_T < S",
+    "fixed release: service price T",
+    "fixed release: x1_W > 0",
+    "fixed release: x1_W < S",
+    "fixed release: service price W",
+    "fixed release: auction price M",
+    "fixed release: auction price T",
+    "fixed release: M bid1(S)",
+    "fixed release: M bid2(S)",
+    "fixed release: T marginal1(S)",
+    "fixed release: T marginal2(S)",
+    "fixed release: D-lower welfare threshold",
+    "fixed release: upper welfare threshold-D",
+    "alpha=1, K_M",
+    "alpha=1, strict full-release objective concavity M",
+    "alpha=1, full-release multiplier M",
+    "alpha=1, K_M: S",
+    "alpha=1, K_M: p at maximum feasible service",
+    "alpha=1, K_M: x1_M > 0",
+    "alpha=1, K_M: x1_M < S",
+    "alpha=1, K_M: service price M",
+    "alpha=1, K_M: x1_T > 0",
+    "alpha=1, K_M: x1_T < S",
+    "alpha=1, K_M: service price T",
+    "alpha=1, K_M: x1_W > 0",
+    "alpha=1, K_M: x1_W < S",
+    "alpha=1, K_M: service price W",
+    "alpha=1, K_M: auction price M",
+    "alpha=1, K_M: auction price T",
+    "alpha=1, K_M: M bid1(S)",
+    "alpha=1, K_M: M bid2(S)",
+    "alpha=1, K_M: T marginal1(S)",
+    "alpha=1, K_M: T marginal2(S)",
+    "alpha=1, K_M: D-lower welfare threshold",
+    "alpha=1, K_M: upper welfare threshold-D",
+    "alpha=1, K_T",
+    "alpha=1, strict full-release objective concavity T",
+    "alpha=1, full-release multiplier T",
+    "alpha=1, K_T: S",
+    "alpha=1, K_T: p at maximum feasible service",
+    "alpha=1, K_T: x1_M > 0",
+    "alpha=1, K_T: x1_M < S",
+    "alpha=1, K_T: service price M",
+    "alpha=1, K_T: x1_T > 0",
+    "alpha=1, K_T: x1_T < S",
+    "alpha=1, K_T: service price T",
+    "alpha=1, K_T: x1_W > 0",
+    "alpha=1, K_T: x1_W < S",
+    "alpha=1, K_T: service price W",
+    "alpha=1, K_T: auction price M",
+    "alpha=1, K_T: auction price T",
+    "alpha=1, K_T: M bid1(S)",
+    "alpha=1, K_T: M bid2(S)",
+    "alpha=1, K_T: T marginal1(S)",
+    "alpha=1, K_T: T marginal2(S)",
+    "alpha=1, K_T: D-lower welfare threshold",
+    "alpha=1, K_T: upper welfare threshold-D",
+    "alpha=2, K_M",
+    "alpha=2, strict full-release objective concavity M",
+    "alpha=2, full-release multiplier M",
+    "alpha=2, K_M: S",
+    "alpha=2, K_M: p at maximum feasible service",
+    "alpha=2, K_M: x1_M > 0",
+    "alpha=2, K_M: x1_M < S",
+    "alpha=2, K_M: service price M",
+    "alpha=2, K_M: x1_T > 0",
+    "alpha=2, K_M: x1_T < S",
+    "alpha=2, K_M: service price T",
+    "alpha=2, K_M: x1_W > 0",
+    "alpha=2, K_M: x1_W < S",
+    "alpha=2, K_M: service price W",
+    "alpha=2, K_M: auction price M",
+    "alpha=2, K_M: auction price T",
+    "alpha=2, K_M: M bid1(S)",
+    "alpha=2, K_M: M bid2(S)",
+    "alpha=2, K_M: T marginal1(S)",
+    "alpha=2, K_M: T marginal2(S)",
+    "alpha=2, K_M: D-lower welfare threshold",
+    "alpha=2, K_M: upper welfare threshold-D",
+    "alpha=2, K_T",
+    "alpha=2, strict full-release objective concavity T",
+    "alpha=2, full-release multiplier T",
+    "alpha=2, K_T: S",
+    "alpha=2, K_T: p at maximum feasible service",
+    "alpha=2, K_T: x1_M > 0",
+    "alpha=2, K_T: x1_M < S",
+    "alpha=2, K_T: service price M",
+    "alpha=2, K_T: x1_T > 0",
+    "alpha=2, K_T: x1_T < S",
+    "alpha=2, K_T: service price T",
+    "alpha=2, K_T: x1_W > 0",
+    "alpha=2, K_T: x1_W < S",
+    "alpha=2, K_T: service price W",
+    "alpha=2, K_T: auction price M",
+    "alpha=2, K_T: auction price T",
+    "alpha=2, K_T: M bid1(S)",
+    "alpha=2, K_T: M bid2(S)",
+    "alpha=2, K_T: T marginal1(S)",
+    "alpha=2, K_T: T marginal2(S)",
+    "alpha=2, K_T: D-lower welfare threshold",
+    "alpha=2, K_T: upper welfare threshold-D"
+  ],
+  "parameters": {
+    "a": 10,
+    "b": 1,
+    "kappa": "1/5",
+    "rho1": "11/10",
+    "rho2": 1,
+    "c1": 2,
+    "c2": 2,
+    "Cbar": "1/10",
+    "R": "3/2",
+    "fixed_S": 3
+  },
+  "fixed_release": {
+    "S": {
+      "exact": "3",
+      "decimal": 3.0
+    },
+    "allocations": {
+      "M": {
+        "x1": {
+          "exact": "173/82",
+          "decimal": 2.1097560975609757
+        },
+        "x2": {
+          "exact": "73/82",
+          "decimal": 0.8902439024390244
+        },
+        "X": {
+          "exact": "2633/820",
+          "decimal": 3.2109756097560975
+        },
+        "W": {
+          "exact": "26365951/1344800",
+          "decimal": 19.60585291493159
+        },
+        "service_price": {
+          "exact": "5567/820",
+          "decimal": 6.7890243902439025
+        },
+        "auction_price": {
+          "exact": "387/100",
+          "decimal": 3.87
+        }
+      },
+      "T": {
+        "x1": {
+          "exact": "80/41",
+          "decimal": 1.951219512195122
+        },
+        "x2": {
+          "exact": "43/41",
+          "decimal": 1.048780487804878
+        },
+        "X": {
+          "exact": "131/41",
+          "decimal": 3.1951219512195124
+        },
+        "W": {
+          "exact": "164447/8405",
+          "decimal": 19.565377751338488
+        },
+        "service_price": {
+          "exact": "279/41",
+          "decimal": 6.804878048780488
+        },
+        "auction_price": {
+          "exact": "180/41",
+          "decimal": 4.390243902439025
+        }
+      },
+      "W": {
+        "x1": {
+          "exact": "190/81",
+          "decimal": 2.345679012345679
+        },
+        "x2": {
+          "exact": "53/81",
+          "decimal": 0.654320987654321
+        },
+        "X": {
+          "exact": "262/81",
+          "decimal": 3.234567901234568
+        },
+        "W": {
+          "exact": "15899/810",
+          "decimal": 19.628395061728394
+        },
+        "service_price": {
+          "exact": "548/81",
+          "decimal": 6.765432098765432
+        }
+      }
+    },
+    "M_bid1_at_S": {
+      "exact": "3401/1025",
+      "decimal": 3.3180487804878047
+    },
+    "M_bid2_at_S": {
+      "exact": "14137/4100",
+      "decimal": 3.448048780487805
+    },
+    "T_marginal1_at_S": {
+      "exact": "187/50",
+      "decimal": 3.74
+    },
+    "T_marginal2_at_S": {
+      "exact": "4",
+      "decimal": 4.0
+    },
+    "welfare_M_minus_T": {
+      "exact": "54431/1344800",
+      "decimal": 0.04047516359309935
+    },
+    "service_M_minus_T": {
+      "exact": "13/820",
+      "decimal": 0.015853658536585366
+    }
+  },
+  "investment": [
+    {
+      "alpha": 1,
+      "capacities": {
+        "M": {
+          "K": {
+            "exact": "136710/45961",
+            "decimal": 2.974478362089598
+          },
+          "full_release_multiplier_B_0p1_gamma_0": {
+            "exact": "2004689/459610",
+            "decimal": 4.361717543134397
+          },
+          "at_own_capacity": {
+            "S": {
+              "exact": "136710/45961",
+              "decimal": 2.974478362089598
+            },
+            "allocations": {
+              "M": {
+                "x1": {
+                  "exact": "96380/45961",
+                  "decimal": 2.0969952786057746
+                },
+                "x2": {
+                  "exact": "40330/45961",
+                  "decimal": 0.8774830834838232
+                },
+                "X": {
+                  "exact": "146348/45961",
+                  "decimal": 3.1841778899501754
+                },
+                "W": {
+                  "exact": "41176023617/2112413521",
+                  "decimal": 19.492406769630783
+                },
+                "service_price": {
+                  "exact": "313262/45961",
+                  "decimal": 6.815822110049825
+                },
+                "auction_price": {
+                  "exact": "1796403/459610",
+                  "decimal": 3.9085376732447075
+                }
+              },
+              "T": {
+                "x1": {
+                  "exact": "3665150/1884401",
+                  "decimal": 1.9449947224608775
+                },
+                "x2": {
+                  "exact": "1939960/1884401",
+                  "decimal": 1.0294836396287201
+                },
+                "X": {
+                  "exact": "5971625/1884401",
+                  "decimal": 3.1689778343356854
+                },
+                "W": {
+                  "exact": "138158155027973/7101934257602",
+                  "decimal": 19.453595318780483
+                },
+                "service_price": {
+                  "exact": "12872385/1884401",
+                  "decimal": 6.831022165664314
+                },
+                "auction_price": {
+                  "exact": "4385871/991790",
+                  "decimal": 4.422177073775699
+                }
+              },
+              "W": {
+                "x1": {
+                  "exact": "8697400/3722841",
+                  "decimal": 2.3362265538603446
+                },
+                "x2": {
+                  "exact": "2376110/3722841",
+                  "decimal": 0.6382518082292529
+                },
+                "X": {
+                  "exact": "11943250/3722841",
+                  "decimal": 3.208101017475632
+                },
+                "W": {
+                  "exact": "3339223932899/171105495201",
+                  "decimal": 19.515585568870055
+                },
+                "service_price": {
+                  "exact": "25285160/3722841",
+                  "decimal": 6.791898982524367
+                }
+              }
+            },
+            "M_bid1_at_S": {
+              "exact": "1546357/459610",
+              "decimal": 3.364498161484737
+            },
+            "M_bid2_at_S": {
+              "exact": "1603643/459610",
+              "decimal": 3.4891386175235524
+            },
+            "T_marginal1_at_S": {
+              "exact": "1739117/459610",
+              "decimal": 3.783897217205892
+            },
+            "T_marginal2_at_S": {
+              "exact": "1853689/459610",
+              "decimal": 4.033178129283523
+            },
+            "welfare_M_minus_T": {
+              "exact": "275636372381/7101934257602",
+              "decimal": 0.038811450850302555
+            },
+            "service_M_minus_T": {
+              "exact": "28643/1884401",
+              "decimal": 0.015200055614489697
+            }
+          }
+        },
+        "T": {
+          "K": {
+            "exact": "138999/47099",
+            "decimal": 2.951209155183762
+          },
+          "full_release_multiplier_B_0p1_gamma_0": {
+            "exact": "1018943/235495",
+            "decimal": 4.326813732775642
+          },
+          "at_own_capacity": {
+            "S": {
+              "exact": "138999/47099",
+              "decimal": 2.951209155183762
+            },
+            "allocations": {
+              "M": {
+                "x1": {
+                  "exact": "8053909/3862118",
+                  "decimal": 2.0853606751528564
+                },
+                "x2": {
+                  "exact": "3344009/3862118",
+                  "decimal": 0.8658484800309053
+                },
+                "X": {
+                  "exact": "122033089/38621180",
+                  "decimal": 3.1597452226990477
+                },
+                "W": {
+                  "exact": "57838805465187919/2983191089184800",
+                  "decimal": 19.388233517750688
+                },
+                "service_price": {
+                  "exact": "264178711/38621180",
+                  "decimal": 6.840254777300952
+                },
+                "auction_price": {
+                  "exact": "18574311/4709900",
+                  "decimal": 3.9436741756725198
+                }
+              },
+              "T": {
+                "x1": {
+                  "exact": "91340/47099",
+                  "decimal": 1.939319306142381
+                },
+                "x2": {
+                  "exact": "47659/47099",
+                  "decimal": 1.011889849041381
+                },
+                "X": {
+                  "exact": "148133/47099",
+                  "decimal": 3.145141085798
+                },
+                "W": {
+                  "exact": "214632472286/11091579005",
+                  "decimal": 19.35093931975288
+                },
+                "service_price": {
+                  "exact": "322857/47099",
+                  "decimal": 6.854858914202
+                },
+                "auction_price": {
+                  "exact": "1048257/235495",
+                  "decimal": 4.451291959489586
+                }
+              },
+              "W": {
+                "x1": {
+                  "exact": "8879870/3815019",
+                  "decimal": 2.3276083290804057
+                },
+                "x2": {
+                  "exact": "2379049/3815019",
+                  "decimal": 0.6236008261033562
+                },
+                "X": {
+                  "exact": "12146906/3815019",
+                  "decimal": 3.1839699880918024
+                },
+                "W": {
+                  "exact": "34880177438777/1796835798810",
+                  "decimal": 19.412000507713216
+                },
+                "service_price": {
+                  "exact": "26003284/3815019",
+                  "decimal": 6.816030011908198
+                }
+              }
+            },
+            "M_bid1_at_S": {
+              "exact": "12651586/3713575",
+              "decimal": 3.4068481180533583
+            },
+            "M_bid2_at_S": {
+              "exact": "681007661/193105900",
+              "decimal": 3.5266020406419485
+            },
+            "T_marginal1_at_S": {
+              "exact": "9005141/2354950",
+              "decimal": 3.8239202530839296
+            },
+            "T_marginal2_at_S": {
+              "exact": "73609/18115",
+              "decimal": 4.0634280982611095
+            },
+            "welfare_M_minus_T": {
+              "exact": "111255719145359/2983191089184800",
+              "decimal": 0.03729419799780953
+            },
+            "service_M_minus_T": {
+              "exact": "564029/38621180",
+              "decimal": 0.01460413690104756
+            }
+          }
+        }
+      }
+    },
+    {
+      "alpha": 2,
+      "capacities": {
+        "M": {
+          "K": {
+            "exact": "274470/95489",
+            "decimal": 2.874362492014787
+          },
+          "full_release_multiplier_B_0p1_gamma_0": {
+            "exact": "1963036/477445",
+            "decimal": 4.11154373802218
+          },
+          "at_own_capacity": {
+            "S": {
+              "exact": "274470/95489",
+              "decimal": 2.874362492014787
+            },
+            "allocations": {
+              "M": {
+                "x1": {
+                  "exact": "195460/95489",
+                  "decimal": 2.046937343568369
+                },
+                "x2": {
+                  "exact": "79010/95489",
+                  "decimal": 0.8274251484464179
+                },
+                "X": {
+                  "exact": "294016/95489",
+                  "decimal": 3.079056226371624
+                },
+                "W": {
+                  "exact": "173602177529/9118149121",
+                  "decimal": 19.039190434950992
+                },
+                "service_price": {
+                  "exact": "660874/95489",
+                  "decimal": 6.920943773628376
+                },
+                "auction_price": {
+                  "exact": "3876579/954890",
+                  "decimal": 4.059712637057672
+                }
+              },
+              "T": {
+                "x1": {
+                  "exact": "7519150/3915049",
+                  "decimal": 1.9205762175645822
+                },
+                "x2": {
+                  "exact": "3734120/3915049",
+                  "decimal": 0.9537862744502048
+                },
+                "X": {
+                  "exact": "12005185/3915049",
+                  "decimal": 3.0664201137712452
+                },
+                "W": {
+                  "exact": "582660941605349/30655217344802",
+                  "decimal": 19.006909494450117
+                },
+                "service_price": {
+                  "exact": "27145305/3915049",
+                  "decimal": 6.933579886228754
+                },
+                "auction_price": {
+                  "exact": "178034661/39150490",
+                  "decimal": 4.547444003893693
+                }
+              },
+              "W": {
+                "x1": {
+                  "exact": "17783000/7734609",
+                  "decimal": 2.299146601980785
+                },
+                "x2": {
+                  "exact": "261710/454977",
+                  "decimal": 0.5752158900340018
+                },
+                "X": {
+                  "exact": "24010370/7734609",
+                  "decimal": 3.1042771522128656
+                },
+                "W": {
+                  "exact": "14080803312587/738570078801",
+                  "decimal": 19.064952286512714
+                },
+                "service_price": {
+                  "exact": "53335720/7734609",
+                  "decimal": 6.895722847787135
+                }
+              }
+            },
+            "M_bid1_at_S": {
+              "exact": "3386717/954890",
+              "decimal": 3.5467090450208922
+            },
+            "M_bid2_at_S": {
+              "exact": "3485659/954890",
+              "decimal": 3.650325168343998
+            },
+            "T_marginal1_at_S": {
+              "exact": "3777637/954890",
+              "decimal": 3.9560965137345665
+            },
+            "T_marginal2_at_S": {
+              "exact": "3975521/954890",
+              "decimal": 4.163328760380777
+            },
+            "welfare_M_minus_T": {
+              "exact": "989579247149/30655217344802",
+              "decimal": 0.032280940500876806
+            },
+            "service_M_minus_T": {
+              "exact": "49471/3915049",
+              "decimal": 0.012636112600378693
+            }
+          }
+        },
+        "T": {
+          "K": {
+            "exact": "275898/89165",
+            "decimal": 3.094241013850726
+          },
+          "full_release_multiplier_B_0p1_gamma_0": {
+            "exact": "396014/89165",
+            "decimal": 4.4413615207760895
+          },
+          "at_own_capacity": {
+            "S": {
+              "exact": "275898/89165",
+              "decimal": 3.094241013850726
+            },
+            "allocations": {
+              "M": {
+                "x1": {
+                  "exact": "7885034/3655765",
+                  "decimal": 2.1568766044863388
+                },
+                "x2": {
+                  "exact": "3426784/3655765",
+                  "decimal": 0.9373644093643875
+                },
+                "X": {
+                  "exact": "60501607/18278825",
+                  "decimal": 3.30992867429936
+                },
+                "W": {
+                  "exact": "13376253609484081/668230886761250",
+                  "decimal": 20.017412954847803
+                },
+                "service_price": {
+                  "exact": "122286643/18278825",
+                  "decimal": 6.69007132570064
+                },
+                "auction_price": {
+                  "exact": "16619001/4458250",
+                  "decimal": 3.7276960690854035
+                }
+              },
+              "T": {
+                "x1": {
+                  "exact": "35206/17833",
+                  "decimal": 1.9742051253294455
+                },
+                "x2": {
+                  "exact": "99868/89165",
+                  "decimal": 1.1200358885212807
+                },
+                "X": {
+                  "exact": "293501/89165",
+                  "decimal": 3.291661526383671
+                },
+                "W": {
+                  "exact": "1587757776277/79503972250",
+                  "decimal": 19.970798078922403
+                },
+                "service_price": {
+                  "exact": "598149/89165",
+                  "decimal": 6.70833847361633
+                },
+                "auction_price": {
+                  "exact": "3809421/891650",
+                  "decimal": 4.2723277070599455
+                }
+              },
+              "W": {
+                "x1": {
+                  "exact": "3438688/1444473",
+                  "decimal": 2.3805830915496515
+                },
+                "x2": {
+                  "exact": "303194/424845",
+                  "decimal": 0.7136579223010745
+                },
+                "X": {
+                  "exact": "24067082/7222365",
+                  "decimal": 3.3322993230056914
+                },
+                "W": {
+                  "exact": "64519547031721/3219910876125",
+                  "decimal": 20.037681014751257
+                },
+                "service_price": {
+                  "exact": "48156568/7222365",
+                  "decimal": 6.667700676994309
+                }
+              }
+            },
+            "M_bid1_at_S": {
+              "exact": "575148737/182788250",
+              "decimal": 3.1465301352794834
+            },
+            "M_bid2_at_S": {
+              "exact": "602528701/182788250",
+              "decimal": 3.2963207481881356
+            },
+            "T_marginal1_at_S": {
+              "exact": "15951197/4458250",
+              "decimal": 3.577905456176751
+            },
+            "T_marginal2_at_S": {
+              "exact": "3457361/891650",
+              "decimal": 3.877486681994056
+            },
+            "welfare_M_minus_T": {
+              "exact": "15574749937948/334115443380625",
+              "decimal": 0.04661487592540047
+            },
+            "service_M_minus_T": {
+              "exact": "333902/18278825",
+              "decimal": 0.018267147915689327
+            }
+          }
+        }
+      }
+    }
+  ],
+  "auction_additional_scenarios": [
+    {
+      "name": "moderate productivity heterogeneity in the strict sufficient domain",
+      "x1M": "226/201",
+      "x2M": "176/201",
+      "priceM": "57/25",
+      "beta1": "111/100",
+      "beta2": "9/10",
+      "bid1_at_S": "563/1675",
+      "bid2_at_S": "429/1675",
+      "x1W": "480/401",
+      "x1NS": "230/201",
+      "welfare_M_minus_NS": "-1684/336675",
+      "welfare_M_minus_NS_float": -0.005001856389693324
+    },
+    {
+      "name": "strategic bidding closer to welfare allocation than marginal-profit bidding",
+      "x1M": "107/204",
+      "x2M": "97/204",
+      "priceM": "293/50",
+      "beta1": "31/25",
+      "beta2": "4/5",
+      "bid1_at_S": "5968/1275",
+      "bid2_at_S": "12803/2550",
+      "x1W": "50/101",
+      "x1NS": "15/34",
+      "welfare_M_minus_NS": "503/122400",
+      "welfare_M_minus_NS_float": 0.004109477124183006
+    },
+    {
+      "name": "strategic bidding farther from welfare allocation than marginal-profit bidding",
+      "x1M": "127/204",
+      "x2M": "77/204",
+      "priceM": "63/50",
+      "beta1": "31/25",
+      "beta2": "4/5",
+      "bid1_at_S": "413/1275",
+      "bid2_at_S": "673/2550",
+      "x1W": "70/101",
+      "x1NS": "65/102",
+      "welfare_M_minus_NS": "-2603/693600",
+      "welfare_M_minus_NS_float": -0.0037528835063437137
+    }
+  ],
+  "quota_policy_comparison": {
+    "status": "passed",
+    "symbolic_checks": 32,
+    "symbolic_names": [
+      "quota_service",
+      "quota_profit1_residual_value",
+      "quota_profit2_residual_value",
+      "M_profit1_participation",
+      "M_profit2_participation",
+      "service_M_minus_Q",
+      "welfare_M_minus_Q",
+      "fixed_gain_intercept",
+      "fixed_gain_affine_in_release",
+      "quota_full_release_welfare",
+      "M_full_release_welfare",
+      "quota_investment_foc",
+      "M_investment_foc",
+      "quota_investment_concavity",
+      "M_investment_concavity",
+      "capacity_M_minus_Q",
+      "service_at_respective_optimal_capacities",
+      "net_value_Q",
+      "net_value_M",
+      "optimized_net_value_gain",
+      "gain_at_Q_capacity_plus_readjustment",
+      "gain_at_M_capacity_minus_quota_opportunity_cost",
+      "homogeneous_service_gap",
+      "homogeneous_capacity_gap",
+      "homogeneous_welfare_gain",
+      "capital_gap_equals_service_gain_channel",
+      "constant_price_capacity_gap",
+      "constant_price_service_gain",
+      "constant_price_welfare_gain",
+      "offsetting_types_allocation_gap",
+      "offsetting_types_welfare_gap",
+      "offsetting_types_capacity_gap"
+    ],
+    "strict_domain_checks": 188,
+    "strict_domain_names": [
+      "service_conversion_gain: fixed: release",
+      "service_conversion_gain: fixed: p at largest service",
+      "service_conversion_gain: fixed: eta1",
+      "service_conversion_gain: fixed: eta2",
+      "service_conversion_gain: fixed: M x1",
+      "service_conversion_gain: fixed: M x2",
+      "service_conversion_gain: fixed: Q p",
+      "service_conversion_gain: fixed: Q participation1",
+      "service_conversion_gain: fixed: Q participation2",
+      "service_conversion_gain: fixed: M p",
+      "service_conversion_gain: fixed: M participation1",
+      "service_conversion_gain: fixed: M participation2",
+      "service_conversion_gain: fixed: M price",
+      "service_conversion_gain: fixed: M endpoint1",
+      "service_conversion_gain: fixed: M endpoint2",
+      "service_conversion_gain: K_M",
+      "service_conversion_gain: K_Q",
+      "service_conversion_gain: K_M: release",
+      "service_conversion_gain: K_M: p at largest service",
+      "service_conversion_gain: K_M: eta1",
+      "service_conversion_gain: K_M: eta2",
+      "service_conversion_gain: K_M: M x1",
+      "service_conversion_gain: K_M: M x2",
+      "service_conversion_gain: K_M: Q p",
+      "service_conversion_gain: K_M: Q participation1",
+      "service_conversion_gain: K_M: Q participation2",
+      "service_conversion_gain: K_M: M p",
+      "service_conversion_gain: K_M: M participation1",
+      "service_conversion_gain: K_M: M participation2",
+      "service_conversion_gain: K_M: M price",
+      "service_conversion_gain: K_M: M endpoint1",
+      "service_conversion_gain: K_M: M endpoint2",
+      "service_conversion_gain: K_Q: release",
+      "service_conversion_gain: K_Q: p at largest service",
+      "service_conversion_gain: K_Q: eta1",
+      "service_conversion_gain: K_Q: eta2",
+      "service_conversion_gain: K_Q: M x1",
+      "service_conversion_gain: K_Q: M x2",
+      "service_conversion_gain: K_Q: Q p",
+      "service_conversion_gain: K_Q: Q participation1",
+      "service_conversion_gain: K_Q: Q participation2",
+      "service_conversion_gain: K_Q: M p",
+      "service_conversion_gain: K_Q: M participation1",
+      "service_conversion_gain: K_Q: M participation2",
+      "service_conversion_gain: K_Q: M price",
+      "service_conversion_gain: K_Q: M endpoint1",
+      "service_conversion_gain: K_Q: M endpoint2",
+      "cost_service_tradeoff: fixed: release",
+      "cost_service_tradeoff: fixed: p at largest service",
+      "cost_service_tradeoff: fixed: eta1",
+      "cost_service_tradeoff: fixed: eta2",
+      "cost_service_tradeoff: fixed: M x1",
+      "cost_service_tradeoff: fixed: M x2",
+      "cost_service_tradeoff: fixed: Q p",
+      "cost_service_tradeoff: fixed: Q participation1",
+      "cost_service_tradeoff: fixed: Q participation2",
+      "cost_service_tradeoff: fixed: M p",
+      "cost_service_tradeoff: fixed: M participation1",
+      "cost_service_tradeoff: fixed: M participation2",
+      "cost_service_tradeoff: fixed: M price",
+      "cost_service_tradeoff: fixed: M endpoint1",
+      "cost_service_tradeoff: fixed: M endpoint2",
+      "cost_service_tradeoff: K_M",
+      "cost_service_tradeoff: K_Q",
+      "cost_service_tradeoff: K_M: release",
+      "cost_service_tradeoff: K_M: p at largest service",
+      "cost_service_tradeoff: K_M: eta1",
+      "cost_service_tradeoff: K_M: eta2",
+      "cost_service_tradeoff: K_M: M x1",
+      "cost_service_tradeoff: K_M: M x2",
+      "cost_service_tradeoff: K_M: Q p",
+      "cost_service_tradeoff: K_M: Q participation1",
+      "cost_service_tradeoff: K_M: Q participation2",
+      "cost_service_tradeoff: K_M: M p",
+      "cost_service_tradeoff: K_M: M participation1",
+      "cost_service_tradeoff: K_M: M participation2",
+      "cost_service_tradeoff: K_M: M price",
+      "cost_service_tradeoff: K_M: M endpoint1",
+      "cost_service_tradeoff: K_M: M endpoint2",
+      "cost_service_tradeoff: K_Q: release",
+      "cost_service_tradeoff: K_Q: p at largest service",
+      "cost_service_tradeoff: K_Q: eta1",
+      "cost_service_tradeoff: K_Q: eta2",
+      "cost_service_tradeoff: K_Q: M x1",
+      "cost_service_tradeoff: K_Q: M x2",
+      "cost_service_tradeoff: K_Q: Q p",
+      "cost_service_tradeoff: K_Q: Q participation1",
+      "cost_service_tradeoff: K_Q: Q participation2",
+      "cost_service_tradeoff: K_Q: M p",
+      "cost_service_tradeoff: K_Q: M participation1",
+      "cost_service_tradeoff: K_Q: M participation2",
+      "cost_service_tradeoff: K_Q: M price",
+      "cost_service_tradeoff: K_Q: M endpoint1",
+      "cost_service_tradeoff: K_Q: M endpoint2",
+      "D_zero_boundary: fixed: release",
+      "D_zero_boundary: fixed: p at largest service",
+      "D_zero_boundary: fixed: eta1",
+      "D_zero_boundary: fixed: eta2",
+      "D_zero_boundary: fixed: M x1",
+      "D_zero_boundary: fixed: M x2",
+      "D_zero_boundary: fixed: Q p",
+      "D_zero_boundary: fixed: Q participation1",
+      "D_zero_boundary: fixed: Q participation2",
+      "D_zero_boundary: fixed: M p",
+      "D_zero_boundary: fixed: M participation1",
+      "D_zero_boundary: fixed: M participation2",
+      "D_zero_boundary: fixed: M price",
+      "D_zero_boundary: fixed: M endpoint1",
+      "D_zero_boundary: fixed: M endpoint2",
+      "D_zero_boundary: K_M",
+      "D_zero_boundary: K_Q",
+      "D_zero_boundary: K_M: release",
+      "D_zero_boundary: K_M: p at largest service",
+      "D_zero_boundary: K_M: eta1",
+      "D_zero_boundary: K_M: eta2",
+      "D_zero_boundary: K_M: M x1",
+      "D_zero_boundary: K_M: M x2",
+      "D_zero_boundary: K_M: Q p",
+      "D_zero_boundary: K_M: Q participation1",
+      "D_zero_boundary: K_M: Q participation2",
+      "D_zero_boundary: K_M: M p",
+      "D_zero_boundary: K_M: M participation1",
+      "D_zero_boundary: K_M: M participation2",
+      "D_zero_boundary: K_M: M price",
+      "D_zero_boundary: K_M: M endpoint1",
+      "D_zero_boundary: K_M: M endpoint2",
+      "D_zero_boundary: K_Q: release",
+      "D_zero_boundary: K_Q: p at largest service",
+      "D_zero_boundary: K_Q: eta1",
+      "D_zero_boundary: K_Q: eta2",
+      "D_zero_boundary: K_Q: M x1",
+      "D_zero_boundary: K_Q: M x2",
+      "D_zero_boundary: K_Q: Q p",
+      "D_zero_boundary: K_Q: Q participation1",
+      "D_zero_boundary: K_Q: Q participation2",
+      "D_zero_boundary: K_Q: M p",
+      "D_zero_boundary: K_Q: M participation1",
+      "D_zero_boundary: K_Q: M participation2",
+      "D_zero_boundary: K_Q: M price",
+      "D_zero_boundary: K_Q: M endpoint1",
+      "D_zero_boundary: K_Q: M endpoint2",
+      "D_negative_cost_advantage: fixed: release",
+      "D_negative_cost_advantage: fixed: p at largest service",
+      "D_negative_cost_advantage: fixed: eta1",
+      "D_negative_cost_advantage: fixed: eta2",
+      "D_negative_cost_advantage: fixed: M x1",
+      "D_negative_cost_advantage: fixed: M x2",
+      "D_negative_cost_advantage: fixed: Q p",
+      "D_negative_cost_advantage: fixed: Q participation1",
+      "D_negative_cost_advantage: fixed: Q participation2",
+      "D_negative_cost_advantage: fixed: M p",
+      "D_negative_cost_advantage: fixed: M participation1",
+      "D_negative_cost_advantage: fixed: M participation2",
+      "D_negative_cost_advantage: fixed: M price",
+      "D_negative_cost_advantage: fixed: M endpoint1",
+      "D_negative_cost_advantage: fixed: M endpoint2",
+      "D_negative_cost_advantage: K_M",
+      "D_negative_cost_advantage: K_Q",
+      "D_negative_cost_advantage: K_M: release",
+      "D_negative_cost_advantage: K_M: p at largest service",
+      "D_negative_cost_advantage: K_M: eta1",
+      "D_negative_cost_advantage: K_M: eta2",
+      "D_negative_cost_advantage: K_M: M x1",
+      "D_negative_cost_advantage: K_M: M x2",
+      "D_negative_cost_advantage: K_M: Q p",
+      "D_negative_cost_advantage: K_M: Q participation1",
+      "D_negative_cost_advantage: K_M: Q participation2",
+      "D_negative_cost_advantage: K_M: M p",
+      "D_negative_cost_advantage: K_M: M participation1",
+      "D_negative_cost_advantage: K_M: M participation2",
+      "D_negative_cost_advantage: K_M: M price",
+      "D_negative_cost_advantage: K_M: M endpoint1",
+      "D_negative_cost_advantage: K_M: M endpoint2",
+      "D_negative_cost_advantage: K_Q: release",
+      "D_negative_cost_advantage: K_Q: p at largest service",
+      "D_negative_cost_advantage: K_Q: eta1",
+      "D_negative_cost_advantage: K_Q: eta2",
+      "D_negative_cost_advantage: K_Q: M x1",
+      "D_negative_cost_advantage: K_Q: M x2",
+      "D_negative_cost_advantage: K_Q: Q p",
+      "D_negative_cost_advantage: K_Q: Q participation1",
+      "D_negative_cost_advantage: K_Q: Q participation2",
+      "D_negative_cost_advantage: K_Q: M p",
+      "D_negative_cost_advantage: K_Q: M participation1",
+      "D_negative_cost_advantage: K_Q: M participation2",
+      "D_negative_cost_advantage: K_Q: M price",
+      "D_negative_cost_advantage: K_Q: M endpoint1",
+      "D_negative_cost_advantage: K_Q: M endpoint2"
+    ],
+    "scope": "Q is an offered equal binding-resource reservation rule with zero access fee and positive operator participation; alpha=1 investment is conditional on the common maintained domain and excludes a revenue-recovery constraint.",
+    "scenarios": [
+      {
+        "name": "service_conversion_gain",
+        "parameters": {
+          "a": "10",
+          "b": "1",
+          "k": "1/5",
+          "rho": "1",
+          "eps": "1/10",
+          "c1": "2",
+          "c2": "2",
+          "C": "1/10",
+          "R": "3/2"
+        },
+        "D": {
+          "exact": "1",
+          "decimal": 1.0
+        },
+        "fixed_release": {
+          "S": {
+            "exact": "3",
+            "decimal": 3.0
+          },
+          "allocations": {
+            "Q": {
+              "x1": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "x2": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "X": {
+                "exact": "63/20",
+                "decimal": 3.15
+              },
+              "W": {
+                "exact": "15471/800",
+                "decimal": 19.33875
+              },
+              "access_price": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "profit1": {
+                "exact": "3081/400",
+                "decimal": 7.7025
+              },
+              "profit2": {
+                "exact": "267/40",
+                "decimal": 6.675
+              }
+            },
+            "M": {
+              "x1": {
+                "exact": "173/82",
+                "decimal": 2.1097560975609757
+              },
+              "x2": {
+                "exact": "73/82",
+                "decimal": 0.8902439024390244
+              },
+              "X": {
+                "exact": "2633/820",
+                "decimal": 3.2109756097560975
+              },
+              "W": {
+                "exact": "26365951/1344800",
+                "decimal": 19.60585291493159
+              },
+              "access_price": {
+                "exact": "387/100",
+                "decimal": 3.87
+              },
+              "profit1": {
+                "exact": "1526379/672400",
+                "decimal": 2.2700461035098156
+              },
+              "profit2": {
+                "exact": "47961/84050",
+                "decimal": 0.5706246281975015
+              }
+            }
+          },
+          "M_endpoint1": {
+            "exact": "3401/1025",
+            "decimal": 3.3180487804878047
+          },
+          "M_endpoint2": {
+            "exact": "14137/4100",
+            "decimal": 3.448048780487805
+          },
+          "welfare_M_minus_Q": {
+            "exact": "449/1681",
+            "decimal": 0.26710291493158833
+          },
+          "service_M_minus_Q": {
+            "exact": "5/82",
+            "decimal": 0.06097560975609756
+          },
+          "fixed_welfare_threshold_for_D_positive": {
+            "exact": "2583/6175",
+            "decimal": 0.4182995951417004
+          }
+        },
+        "investment": {
+          "M": {
+            "K": {
+              "exact": "136710/45961",
+              "decimal": 2.974478362089598
+            },
+            "net_value": {
+              "exact": "24227302/1884401",
+              "decimal": 12.856765624726371
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "136710/45961",
+                "decimal": 2.974478362089598
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "68355/45961",
+                    "decimal": 1.487239181044799
+                  },
+                  "x2": {
+                    "exact": "68355/45961",
+                    "decimal": 1.487239181044799
+                  },
+                  "X": {
+                    "exact": "287091/91922",
+                    "decimal": 3.1232022801940778
+                  },
+                  "W": {
+                    "exact": "324866720871/16899308168",
+                    "decimal": 19.223669847393957
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "64932287427/8449654084",
+                    "decimal": 7.684608953395352
+                  },
+                  "profit2": {
+                    "exact": "14072612967/2112413521",
+                    "decimal": 6.661864652493862
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "96380/45961",
+                    "decimal": 2.0969952786057746
+                  },
+                  "x2": {
+                    "exact": "40330/45961",
+                    "decimal": 0.8774830834838232
+                  },
+                  "X": {
+                    "exact": "146348/45961",
+                    "decimal": 3.1841778899501754
+                  },
+                  "W": {
+                    "exact": "41176023617/2112413521",
+                    "decimal": 19.492406769630783
+                  },
+                  "access_price": {
+                    "exact": "1796403/459610",
+                    "decimal": 3.9085376732447075
+                  },
+                  "profit1": {
+                    "exact": "4737443244/2112413521",
+                    "decimal": 2.2426684912324037
+                  },
+                  "profit2": {
+                    "exact": "1171086408/2112413521",
+                    "decimal": 0.5543831244962004
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "1546357/459610",
+                "decimal": 3.364498161484737
+              },
+              "M_endpoint2": {
+                "exact": "1603643/459610",
+                "decimal": 3.4891386175235524
+              },
+              "welfare_M_minus_Q": {
+                "exact": "4051265/15075208",
+                "decimal": 0.2687369222368275
+              },
+              "service_M_minus_Q": {
+                "exact": "5/82",
+                "decimal": 0.06097560975609756
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "574182/1384435",
+                "decimal": 0.4147410315399423
+              }
+            }
+          },
+          "Q": {
+            "K": {
+              "exact": "3360/1121",
+              "decimal": 2.9973238180196256
+            },
+            "net_value": {
+              "exact": "14112/1121",
+              "decimal": 12.588760035682427
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "3360/1121",
+                "decimal": 2.9973238180196256
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "1680/1121",
+                    "decimal": 1.4986619090098128
+                  },
+                  "x2": {
+                    "exact": "1680/1121",
+                    "decimal": 1.4986619090098128
+                  },
+                  "X": {
+                    "exact": "3528/1121",
+                    "decimal": 3.1471900089206066
+                  },
+                  "W": {
+                    "exact": "24286752/1256641",
+                    "decimal": 19.326722588233235
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "9676968/1256641",
+                    "decimal": 7.7006623212198235
+                  },
+                  "profit2": {
+                    "exact": "8386392/1256641",
+                    "decimal": 6.6736577908885675
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "96905/45961",
+                    "decimal": 2.1084180065707883
+                  },
+                  "x2": {
+                    "exact": "40855/45961",
+                    "decimal": 0.8889058114488371
+                  },
+                  "X": {
+                    "exact": "294901/91922",
+                    "decimal": 3.2081656186767042
+                  },
+                  "W": {
+                    "exact": "331124990911/16899308168",
+                    "decimal": 19.593996844084298
+                  },
+                  "access_price": {
+                    "exact": "21714/5605",
+                    "decimal": 3.8740410347903658
+                  },
+                  "profit1": {
+                    "exact": "19156781211/8449654084",
+                    "decimal": 2.2671675101202875
+                  },
+                  "profit2": {
+                    "exact": "1201774338/2112413521",
+                    "decimal": 0.5689105499718111
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "1527247/459610",
+                "decimal": 3.3229194316920867
+              },
+              "M_endpoint2": {
+                "exact": "793369/229805",
+                "decimal": 3.452357433476208
+              },
+              "welfare_M_minus_Q": {
+                "exact": "4029215/15075208",
+                "decimal": 0.26727425585106357
+              },
+              "service_M_minus_Q": {
+                "exact": "5/82",
+                "decimal": 0.06097560975609756
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "578592/1384435",
+                "decimal": 0.41792644652872835
+              }
+            }
+          }
+        },
+        "capacity_M_minus_Q": {
+          "exact": "-1050/45961",
+          "decimal": -0.022845455930027632
+        },
+        "optimized_service_M_minus_Q": {
+          "exact": "1700/45961",
+          "decimal": 0.03698788102956855
+        },
+        "optimized_net_value_M_minus_Q": {
+          "exact": "505030/1884401",
+          "decimal": 0.2680055890439455
+        },
+        "optimized_welfare_threshold_for_D_positive": {
+          "exact": "36162/86665",
+          "decimal": 0.417261870420585
+        },
+        "joint_investment_interval_domain": "Both endpoint checks passed; all defining constraints are affine after dividing Q participation by S/2."
+      },
+      {
+        "name": "cost_service_tradeoff",
+        "parameters": {
+          "a": "10",
+          "b": "1",
+          "k": "1/5",
+          "rho": "1",
+          "eps": "1/10",
+          "c1": "14/5",
+          "c2": "2",
+          "C": "1/10",
+          "R": "3/2"
+        },
+        "D": {
+          "exact": "1/5",
+          "decimal": 0.2
+        },
+        "fixed_release": {
+          "S": {
+            "exact": "3",
+            "decimal": 3.0
+          },
+          "allocations": {
+            "Q": {
+              "x1": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "x2": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "X": {
+                "exact": "63/20",
+                "decimal": 3.15
+              },
+              "W": {
+                "exact": "14511/800",
+                "decimal": 18.13875
+              },
+              "access_price": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "profit1": {
+                "exact": "2601/400",
+                "decimal": 6.5025
+              },
+              "profit2": {
+                "exact": "267/40",
+                "decimal": 6.675
+              }
+            },
+            "M": {
+              "x1": {
+                "exact": "133/82",
+                "decimal": 1.6219512195121952
+              },
+              "x2": {
+                "exact": "113/82",
+                "decimal": 1.3780487804878048
+              },
+              "X": {
+                "exact": "2593/820",
+                "decimal": 3.1621951219512194
+              },
+              "W": {
+                "exact": "24366031/1344800",
+                "decimal": 18.11870240928019
+              },
+              "access_price": {
+                "exact": "347/100",
+                "decimal": 3.47
+              },
+              "profit1": {
+                "exact": "902139/672400",
+                "decimal": 1.3416701368233195
+              },
+              "profit2": {
+                "exact": "114921/84050",
+                "decimal": 1.3672932778108269
+              }
+            }
+          },
+          "M_endpoint1": {
+            "exact": "2681/1025",
+            "decimal": 2.615609756097561
+          },
+          "M_endpoint2": {
+            "exact": "12897/4100",
+            "decimal": 3.145609756097561
+          },
+          "welfare_M_minus_Q": {
+            "exact": "-337/16810",
+            "decimal": -0.020047590719809636
+          },
+          "service_M_minus_Q": {
+            "exact": "1/82",
+            "decimal": 0.012195121951219513
+          },
+          "fixed_welfare_threshold_for_D_positive": {
+            "exact": "2583/6175",
+            "decimal": 0.4182995951417004
+          }
+        },
+        "investment": {
+          "M": {
+            "K": {
+              "exact": "130990/45961",
+              "decimal": 2.8500250212136375
+            },
+            "net_value": {
+              "exact": "21482586/1884401",
+              "decimal": 11.400220016864775
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "130990/45961",
+                "decimal": 2.8500250212136375
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "65495/45961",
+                    "decimal": 1.4250125106068188
+                  },
+                  "x2": {
+                    "exact": "65495/45961",
+                    "decimal": 1.4250125106068188
+                  },
+                  "X": {
+                    "exact": "275079/91922",
+                    "decimal": 2.9925262722743193
+                  },
+                  "W": {
+                    "exact": "295912448639/16899308168",
+                    "decimal": 17.510329162428704
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "54463454467/8449654084",
+                    "decimal": 6.445643090896501
+                  },
+                  "profit2": {
+                    "exact": "13914635433/2112413521",
+                    "decimal": 6.587079326406186
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "71100/45961",
+                    "decimal": 1.546963730119014
+                  },
+                  "x2": {
+                    "exact": "59890/45961",
+                    "decimal": 1.3030612910946238
+                  },
+                  "X": {
+                    "exact": "138100/45961",
+                    "decimal": 3.004721394225539
+                  },
+                  "W": {
+                    "exact": "36950763981/2112413521",
+                    "decimal": 17.49220198302262
+                  },
+                  "access_price": {
+                    "exact": "1698931/459610",
+                    "decimal": 3.696462217967407
+                  },
+                  "profit1": {
+                    "exact": "2578157100/2112413521",
+                    "decimal": 1.2204793589749041
+                  },
+                  "profit2": {
+                    "exact": "2582504712/2112413521",
+                    "decimal": 1.2225374844114152
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "1327613/459610",
+                "decimal": 2.8885642174887405
+              },
+              "M_endpoint2": {
+                "exact": "1556731/459610",
+                "decimal": 3.3870694719436045
+              },
+              "welfare_M_minus_Q": {
+                "exact": "-273271/15075208",
+                "decimal": -0.018127179406081828
+              },
+              "service_M_minus_Q": {
+                "exact": "1/82",
+                "decimal": 0.012195121951219513
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "550158/1384435",
+                "decimal": 0.39738810417246023
+              }
+            }
+          },
+          "Q": {
+            "K": {
+              "exact": "3200/1121",
+              "decimal": 2.854594112399643
+            },
+            "net_value": {
+              "exact": "12800/1121",
+              "decimal": 11.418376449598572
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "3200/1121",
+                "decimal": 2.854594112399643
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "1600/1121",
+                    "decimal": 1.4272970561998215
+                  },
+                  "x2": {
+                    "exact": "1600/1121",
+                    "decimal": 1.4272970561998215
+                  },
+                  "X": {
+                    "exact": "3360/1121",
+                    "decimal": 2.9973238180196256
+                  },
+                  "W": {
+                    "exact": "22028800/1256641",
+                    "decimal": 17.529907109508603
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "8102560/1256641",
+                    "decimal": 6.447792169760496
+                  },
+                  "profit2": {
+                    "exact": "8281440/1256641",
+                    "decimal": 6.590139904714234
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "71205/45961",
+                    "decimal": 1.5492482757120167
+                  },
+                  "x2": {
+                    "exact": "59995/45961",
+                    "decimal": 1.3053458366876265
+                  },
+                  "X": {
+                    "exact": "276641/91922",
+                    "decimal": 3.0095189399708446
+                  },
+                  "W": {
+                    "exact": "295935976887/16899308168",
+                    "decimal": 17.51172142344709
+                  },
+                  "access_price": {
+                    "exact": "4136/1121",
+                    "decimal": 3.6895628902765387
+                  },
+                  "profit1": {
+                    "exact": "10343110131/8449654084",
+                    "decimal": 1.224086812096295
+                  },
+                  "profit2": {
+                    "exact": "2591568018/2112413521",
+                    "decimal": 1.226827982417558
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "1323791/459610",
+                "decimal": 2.8802484715302104
+              },
+              "M_endpoint2": {
+                "exact": "155335/45961",
+                "decimal": 3.3797132351341355
+              },
+              "welfare_M_minus_Q": {
+                "exact": "-274153/15075208",
+                "decimal": -0.018185686061512385
+              },
+              "service_M_minus_Q": {
+                "exact": "1/82",
+                "decimal": 0.012195121951219513
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "110208/276887",
+                "decimal": 0.39802518717021745
+              }
+            }
+          }
+        },
+        "capacity_M_minus_Q": {
+          "exact": "-210/45961",
+          "decimal": -0.004569091186005526
+        },
+        "optimized_service_M_minus_Q": {
+          "exact": "340/45961",
+          "decimal": 0.007397576205913709
+        },
+        "optimized_net_value_M_minus_Q": {
+          "exact": "-34214/1884401",
+          "decimal": -0.018156432733797107
+        },
+        "optimized_welfare_threshold_for_D_positive": {
+          "exact": "6888/17333",
+          "decimal": 0.3973922575434143
+        },
+        "joint_investment_interval_domain": "Both endpoint checks passed; all defining constraints are affine after dividing Q participation by S/2."
+      },
+      {
+        "name": "D_zero_boundary",
+        "parameters": {
+          "a": "10",
+          "b": "1",
+          "k": "1/5",
+          "rho": "1",
+          "eps": "1/10",
+          "c1": "3",
+          "c2": "2",
+          "C": "1/10",
+          "R": "3/2"
+        },
+        "D": {
+          "exact": "0",
+          "decimal": 0.0
+        },
+        "fixed_release": {
+          "S": {
+            "exact": "3",
+            "decimal": 3.0
+          },
+          "allocations": {
+            "Q": {
+              "x1": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "x2": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "X": {
+                "exact": "63/20",
+                "decimal": 3.15
+              },
+              "W": {
+                "exact": "14271/800",
+                "decimal": 17.83875
+              },
+              "access_price": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "profit1": {
+                "exact": "2481/400",
+                "decimal": 6.2025
+              },
+              "profit2": {
+                "exact": "267/40",
+                "decimal": 6.675
+              }
+            },
+            "M": {
+              "x1": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "x2": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "X": {
+                "exact": "63/20",
+                "decimal": 3.15
+              },
+              "W": {
+                "exact": "14271/800",
+                "decimal": 17.83875
+              },
+              "access_price": {
+                "exact": "337/100",
+                "decimal": 3.37
+              },
+              "profit1": {
+                "exact": "459/400",
+                "decimal": 1.1475
+              },
+              "profit2": {
+                "exact": "81/50",
+                "decimal": 1.62
+              }
+            }
+          },
+          "M_endpoint1": {
+            "exact": "61/25",
+            "decimal": 2.44
+          },
+          "M_endpoint2": {
+            "exact": "307/100",
+            "decimal": 3.07
+          },
+          "welfare_M_minus_Q": {
+            "exact": "0",
+            "decimal": 0.0
+          },
+          "service_M_minus_Q": {
+            "exact": "0",
+            "decimal": 0.0
+          },
+          "fixed_welfare_threshold_for_D_positive": {
+            "exact": "2583/6175",
+            "decimal": 0.4182995951417004
+          }
+        },
+        "investment": {
+          "M": {
+            "K": {
+              "exact": "3160/1121",
+              "decimal": 2.8189116859946477
+            },
+            "net_value": {
+              "exact": "12482/1121",
+              "decimal": 11.134701159678858
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "3160/1121",
+                "decimal": 2.8189116859946477
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "x2": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "X": {
+                    "exact": "3318/1121",
+                    "decimal": 2.95985727029438
+                  },
+                  "W": {
+                    "exact": "21481522/1256641",
+                    "decimal": 17.094398479756748
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "7726358/1256641",
+                    "decimal": 6.148421068547023
+                  },
+                  "profit2": {
+                    "exact": "8250602/1256641",
+                    "decimal": 6.565599880952476
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "x2": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "X": {
+                    "exact": "3318/1121",
+                    "decimal": 2.95985727029438
+                  },
+                  "W": {
+                    "exact": "21481522/1256641",
+                    "decimal": 17.094398479756748
+                  },
+                  "access_price": {
+                    "exact": "40843/11210",
+                    "decimal": 3.643443354148082
+                  },
+                  "profit1": {
+                    "exact": "1273164/1256641",
+                    "decimal": 1.0131485444132413
+                  },
+                  "profit2": {
+                    "exact": "1797408/1256641",
+                    "decimal": 1.4303273568186936
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "31047/11210",
+                "decimal": 2.769580731489741
+              },
+              "M_endpoint2": {
+                "exact": "37683/11210",
+                "decimal": 3.3615521855486175
+              },
+              "welfare_M_minus_Q": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "service_M_minus_Q": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "544152/1384435",
+                "decimal": 0.39304987233058974
+              }
+            }
+          },
+          "Q": {
+            "K": {
+              "exact": "3160/1121",
+              "decimal": 2.8189116859946477
+            },
+            "net_value": {
+              "exact": "12482/1121",
+              "decimal": 11.134701159678858
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "3160/1121",
+                "decimal": 2.8189116859946477
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "x2": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "X": {
+                    "exact": "3318/1121",
+                    "decimal": 2.95985727029438
+                  },
+                  "W": {
+                    "exact": "21481522/1256641",
+                    "decimal": 17.094398479756748
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "7726358/1256641",
+                    "decimal": 6.148421068547023
+                  },
+                  "profit2": {
+                    "exact": "8250602/1256641",
+                    "decimal": 6.565599880952476
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "x2": {
+                    "exact": "1580/1121",
+                    "decimal": 1.4094558429973238
+                  },
+                  "X": {
+                    "exact": "3318/1121",
+                    "decimal": 2.95985727029438
+                  },
+                  "W": {
+                    "exact": "21481522/1256641",
+                    "decimal": 17.094398479756748
+                  },
+                  "access_price": {
+                    "exact": "40843/11210",
+                    "decimal": 3.643443354148082
+                  },
+                  "profit1": {
+                    "exact": "1273164/1256641",
+                    "decimal": 1.0131485444132413
+                  },
+                  "profit2": {
+                    "exact": "1797408/1256641",
+                    "decimal": 1.4303273568186936
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "31047/11210",
+                "decimal": 2.769580731489741
+              },
+              "M_endpoint2": {
+                "exact": "37683/11210",
+                "decimal": 3.3615521855486175
+              },
+              "welfare_M_minus_Q": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "service_M_minus_Q": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "544152/1384435",
+                "decimal": 0.39304987233058974
+              }
+            }
+          }
+        },
+        "capacity_M_minus_Q": {
+          "exact": "0",
+          "decimal": 0.0
+        },
+        "optimized_service_M_minus_Q": {
+          "exact": "0",
+          "decimal": 0.0
+        },
+        "optimized_net_value_M_minus_Q": {
+          "exact": "0",
+          "decimal": 0.0
+        },
+        "optimized_welfare_threshold_for_D_positive": {
+          "exact": "68019/173330",
+          "decimal": 0.3924248543241216
+        },
+        "joint_investment_interval_domain": "Both endpoint checks passed; all defining constraints are affine after dividing Q participation by S/2."
+      },
+      {
+        "name": "D_negative_cost_advantage",
+        "parameters": {
+          "a": "10",
+          "b": "1",
+          "k": "1/5",
+          "rho": "1",
+          "eps": "1/10",
+          "c1": "16/5",
+          "c2": "2",
+          "C": "1/10",
+          "R": "3/2"
+        },
+        "D": {
+          "exact": "-1/5",
+          "decimal": -0.2
+        },
+        "fixed_release": {
+          "S": {
+            "exact": "3",
+            "decimal": 3.0
+          },
+          "allocations": {
+            "Q": {
+              "x1": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "x2": {
+                "exact": "3/2",
+                "decimal": 1.5
+              },
+              "X": {
+                "exact": "63/20",
+                "decimal": 3.15
+              },
+              "W": {
+                "exact": "14031/800",
+                "decimal": 17.53875
+              },
+              "access_price": {
+                "exact": "0",
+                "decimal": 0.0
+              },
+              "profit1": {
+                "exact": "2361/400",
+                "decimal": 5.9025
+              },
+              "profit2": {
+                "exact": "267/40",
+                "decimal": 6.675
+              }
+            },
+            "M": {
+              "x1": {
+                "exact": "113/82",
+                "decimal": 1.3780487804878048
+              },
+              "x2": {
+                "exact": "133/82",
+                "decimal": 1.6219512195121952
+              },
+              "X": {
+                "exact": "2573/820",
+                "decimal": 3.1378048780487804
+              },
+              "W": {
+                "exact": "23662471/1344800",
+                "decimal": 17.595531677572872
+              },
+              "access_price": {
+                "exact": "327/100",
+                "decimal": 3.27
+              },
+              "profit1": {
+                "exact": "651219/672400",
+                "decimal": 0.9684994051160024
+              },
+              "profit2": {
+                "exact": "159201/84050",
+                "decimal": 1.8941225461035098
+              }
+            }
+          },
+          "M_endpoint1": {
+            "exact": "2321/1025",
+            "decimal": 2.264390243902439
+          },
+          "M_endpoint2": {
+            "exact": "12277/4100",
+            "decimal": 2.9943902439024392
+          },
+          "welfare_M_minus_Q": {
+            "exact": "1909/33620",
+            "decimal": 0.05678167757287329
+          },
+          "service_M_minus_Q": {
+            "exact": "-1/82",
+            "decimal": -0.012195121951219513
+          },
+          "fixed_welfare_threshold_for_D_positive": {
+            "exact": "2583/6175",
+            "decimal": 0.4182995951417004
+          }
+        },
+        "investment": {
+          "M": {
+            "K": {
+              "exact": "128130/45961",
+              "decimal": 2.7877983507756574
+            },
+            "net_value": {
+              "exact": "20556232/1884401",
+              "decimal": 10.908629320404733
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "128130/45961",
+                "decimal": 2.7877983507756574
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "64065/45961",
+                    "decimal": 1.3938991753878287
+                  },
+                  "x2": {
+                    "exact": "64065/45961",
+                    "decimal": 1.3938991753878287
+                  },
+                  "X": {
+                    "exact": "269073/91922",
+                    "decimal": 2.9271882683144406
+                  },
+                  "W": {
+                    "exact": "281938417983/16899308168",
+                    "decimal": 16.683429592512535
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "49482921903/8449654084",
+                    "decimal": 5.85620682350764
+                  },
+                  "profit2": {
+                    "exact": "13821536856/2112413521",
+                    "decimal": 6.5430071899260485
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "58460/45961",
+                    "decimal": 1.2719479558756337
+                  },
+                  "x2": {
+                    "exact": "69670/45961",
+                    "decimal": 1.515850394900024
+                  },
+                  "X": {
+                    "exact": "133976/45961",
+                    "decimal": 2.914993146363221
+                  },
+                  "W": {
+                    "exact": "35356508747/2112413521",
+                    "decimal": 16.737494053845342
+                  },
+                  "access_price": {
+                    "exact": "330039/91922",
+                    "decimal": 3.5904244903287568
+                  },
+                  "profit1": {
+                    "exact": "1742961516/2112413521",
+                    "decimal": 0.8251043172526635
+                  },
+                  "profit2": {
+                    "exact": "3494814408/2112413521",
+                    "decimal": 1.654417742197362
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "1218241/459610",
+                "decimal": 2.6505972454907423
+              },
+              "M_endpoint2": {
+                "exact": "306655/91922",
+                "decimal": 3.3360348991536304
+              },
+              "welfare_M_minus_Q": {
+                "exact": "815033/15075208",
+                "decimal": 0.05406446133280549
+              },
+              "service_M_minus_Q": {
+                "exact": "-1/82",
+                "decimal": -0.012195121951219513
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "538146/1384435",
+                "decimal": 0.3887116404887192
+              }
+            }
+          },
+          "Q": {
+            "K": {
+              "exact": "3120/1121",
+              "decimal": 2.783229259589652
+            },
+            "net_value": {
+              "exact": "12168/1121",
+              "decimal": 10.854594112399644
+            },
+            "at_own_capacity": {
+              "S": {
+                "exact": "3120/1121",
+                "decimal": 2.783229259589652
+              },
+              "allocations": {
+                "Q": {
+                  "x1": {
+                    "exact": "1560/1121",
+                    "decimal": 1.391614629794826
+                  },
+                  "x2": {
+                    "exact": "1560/1121",
+                    "decimal": 1.391614629794826
+                  },
+                  "X": {
+                    "exact": "3276/1121",
+                    "decimal": 2.922390722569135
+                  },
+                  "W": {
+                    "exact": "20941128/1256641",
+                    "decimal": 16.664367945976615
+                  },
+                  "access_price": {
+                    "exact": "0",
+                    "decimal": 0.0
+                  },
+                  "profit1": {
+                    "exact": "7357116/1256641",
+                    "decimal": 5.854588541994094
+                  },
+                  "profit2": {
+                    "exact": "8217924/1256641",
+                    "decimal": 6.539595636303447
+                  }
+                },
+                "M": {
+                  "x1": {
+                    "exact": "58355/45961",
+                    "decimal": 1.269663410282631
+                  },
+                  "x2": {
+                    "exact": "69565/45961",
+                    "decimal": 1.5135658493070212
+                  },
+                  "X": {
+                    "exact": "267511/91922",
+                    "decimal": 2.9101956006179153
+                  },
+                  "W": {
+                    "exact": "282528952615/16899308168",
+                    "decimal": 16.71837390065399
+                  },
+                  "access_price": {
+                    "exact": "20163/5605",
+                    "decimal": 3.597323818019625
+                  },
+                  "profit1": {
+                    "exact": "6946824291/8449654084",
+                    "decimal": 0.8221430394593654
+                  },
+                  "profit2": {
+                    "exact": "3484288242/2112413521",
+                    "decimal": 1.6494347377357088
+                  }
+                }
+              },
+              "M_endpoint1": {
+                "exact": "1222063/459610",
+                "decimal": 2.6589129914492724
+              },
+              "M_endpoint2": {
+                "exact": "768328/229805",
+                "decimal": 3.343391135963099
+              },
+              "welfare_M_minus_Q": {
+                "exact": "814151/15075208",
+                "decimal": 0.054005954677374936
+              },
+              "service_M_minus_Q": {
+                "exact": "-1/82",
+                "decimal": -0.012195121951219513
+              },
+              "fixed_welfare_threshold_for_D_positive": {
+                "exact": "41328/106495",
+                "decimal": 0.38807455749096204
+              }
+            }
+          }
+        },
+        "capacity_M_minus_Q": {
+          "exact": "210/45961",
+          "decimal": 0.004569091186005526
+        },
+        "optimized_service_M_minus_Q": {
+          "exact": "-340/45961",
+          "decimal": -0.007397576205913709
+        },
+        "optimized_net_value_M_minus_Q": {
+          "exact": "101824/1884401",
+          "decimal": 0.054035208005090214
+        },
+        "optimized_welfare_threshold_for_D_positive": {
+          "exact": "33579/86665",
+          "decimal": 0.38745745110482893
+        },
+        "joint_investment_interval_domain": "Both endpoint checks passed; all defining constraints are affine after dividing Q participation by S/2."
+      }
+    ]
+  },
+  "combined_symbolic_checks": 69,
+  "combined_strict_domain_checks": 303
+}

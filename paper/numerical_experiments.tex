@@ -1,0 +1,115 @@
+\section{Numerical experiments}\label{sec:numerical}
+
+The experiments expose the policy content of the analytical thresholds. Each experiment has one responsibility. Fixed-release sweeps locate the allocation boundary; four mechanism paths show why the ranking changes; investment sweeps trace the service gain into capacity; state-contingent release separates the two marginal values of infrastructure; and a multivariate design-space scan tests the same rankings when several inputs move jointly. All figures are generated from the stated model by \path{checks/generate_numerical_figures.py}; the script writes the plotted values and the full scan to \path{checks/numerical_results/}.
+
+\subsection{Experimental design}\label{subsec:numerical-design}
+
+Configuration I is the common reference for fixed-release, mechanism, and investment comparisons. It sets $a=10$, $b=1$, $k=0.2$, $\rho_1=1.1$, $\rho_2=1$, $c_2=2$, $B=0.1$, $\gamma=0$, $S=K=3$, and $R=1.5$. Varying $c_1$ varies
+$D=a\varepsilon+c_2-c_1$ while preserving the service-productivity gap. Configuration II is used for the release experiment: $b=0.75$, $k=0.16$, $(\rho_1,\rho_2)=(1.16,1)$, $(c_1,c_2)=(3,2.3)$, $(B,\gamma)=(2.2,2.2)$, and $K=5.5$, while the public demand intercept varies over $a_\omega\in[8,17]$. This range contains both slack-release and binding-release states, and the positive-price affine domain holds throughout.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Numerical experiments and their analytical responsibility. Values are normalized resource and service units.}\label{tab:numerical-design}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{P{0.22\linewidth}P{0.26\linewidth}P{0.42\linewidth}}
+\toprule
+Experiment & Variation & Question answered \\
+\midrule
+Fixed release & $D\in[-0.45,1.45]$; $(\varepsilon,c_1-c_2)$ grid & Where does higher service translate into higher welfare? \\
+Mechanism paths & $D\in[-0.35,1.40]$ & How do $Q$, $M$, $T$, and $W$ move relative to one another? \\
+Investment & $D\in[-0.70,1.70]$, $R=1.5$ & When does allocation substitute for installed capacity and raise net value? \\
+State release & $a_\omega\in[8,17]$, $K=5.5$ & When does capacity provide congestion relief, scarce-state accommodation, or both? \\
+Design-space scan & 30,000 fixed-seed parameter draws & Do both policy regions remain material under joint parameter variation? \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Fixed-release policy regions}\label{subsec:numerical-policy-regions}
+
+Figure~\ref{fig:policy-regions} begins with the central distinction. Panel (a) confirms that the service effect changes sign only at $D=0$. Panel (b) shows that the welfare comparison has an additional positive crossing: under Configuration I, the analytical threshold is $D=0.418300$. The interval $0<D<0.418300$ is therefore economically substantive. The auction assigns more resource to the more productive operator and raises service, yet equal reservations retain higher welfare because concentration on that operator is too costly. Panel (c) varies productivity and the cost premium together. The resulting regions show that the ranking is governed by their interaction, rather than by productivity or cost alone.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{generated/fig_policy_regions.pdf}
+\caption{Service and welfare effects at a fixed release. Panels (a) and (b) vary $D$ under Configuration I. Panel (c) varies the productivity gap and operator 1's resource-cost premium with $k=0.22$; blue and orange mark the higher-welfare rule inside the common comparison domain.}
+\label{fig:policy-regions}
+\end{figure}
+
+Two points follow directly. First, an output gain is not a welfare ranking. Second, the policy boundary is not a calibration artifact: it is the zero contour of Proposition~\ref{prop:type-quota}, and the two-dimensional map shows how observable productivity and cost differences move a corridor across it.
+
+\subsection{Mechanism paths and distance from efficiency}\label{subsec:numerical-mechanisms}
+
+Figure~\ref{fig:mechanism-paths} adds the two comparisons that a binary $M$--$Q$ chart would hide. The efficient split $W$ moves with the marginal service value and dispatch cost. Equal reservations remain at one half, while both bidding paths respond to $D$. Panel (b) converts these allocations into the exact welfare distance in \eqref{eq:type-welfare-distance}. The strategic auction is closest to $W$ in part of the range, but the unshifted schedule $T$ or equal reservations can be closer elsewhere. The managerial content is not that one mechanism dominates. It is that the efficient target and each implementable path have different slopes, so the operating environment determines which distortion matters.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\linewidth]{generated/fig_mechanism_comparison.pdf}
+\caption{Allocation paths and welfare distance from the efficient full-use split. All paths use Configuration I and remain in the common interior domain shown.}
+\label{fig:mechanism-paths}
+\end{figure}
+
+The two scenarios in Table~\ref{tab:type-illustration} anchor this continuum. Scenario A sets $c_1=2$ and hence $D=1$; Scenario B sets $c_1=2.8$ and hence $D=0.2$. They share every other input and lie on opposite sides of the same threshold.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Policy comparisons on both sides of the welfare threshold. Panel A holds $S=K=3$ fixed. Panel B uses each rule's own full-release capacity choice, $\alpha=1$ and $R=1.5$. All displayed allocations satisfy participation, positive service prices, and the specified auction domain.}\label{tab:type-illustration}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{A: $D=1$} & \multicolumn{2}{c}{B: $D=0.2$}\\
+Quantity & $Q$ & $M$ & $Q$ & $M$\\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A: common resource release}}\\
+Operator 1's resource & 1.500000 & 2.109756 & 1.500000 & 1.621951\\
+Delivered service $X$ & 3.150000 & 3.210976 & 3.150000 & 3.162195\\
+Operating welfare $W$ & 19.338750 & 19.605853 & 18.138750 & 18.118702\\
+Resource price & 0 & 3.870000 & 0 & 3.470000\\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B: each rule at its own capacity choice}}\\
+Installed capacity & 2.997324 & 2.974478 & 2.854594 & 2.850025\\
+Delivered service & 3.147190 & 3.184178 & 2.997324 & 3.004721\\
+Net social value $\mathcal V$ & 12.588760 & 12.856766 & 11.418376 & 11.400220\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Scenario A raises fixed-release service by $0.060976$ and welfare by $0.267103$. At its own preferred capacity, the auction supplies more service with $0.022845$ less installed capacity and $0.268006$ more net social value. Scenario B preserves the service increase but reverses both value rankings. The pair gives the two colored regions in Figure~\ref{fig:policy-regions} concrete operating interpretations.
+
+\subsection{Capital substitution}\label{subsec:numerical-investment}
+
+Figure~\ref{fig:investment-sweep} follows each rule to its own welfare-maximizing full-release capacity. For $D>0$, $K_M$ lies below $K_Q$ while $X_M(K_M)$ lies above $X_Q(K_Q)$, exactly as Proposition~\ref{prop:type-quota-investment} predicts. Panel (c) supplies the missing value test. Under Configuration I, optimized net value crosses zero at approximately $D=0.402410$. Thus ``more service with less capacity'' is the operating effect; the net-value threshold determines when that effect also justifies choosing the auction.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{generated/fig_investment_substitution.pdf}
+\caption{Full-release capacity, service, and optimized net value as $D$ varies under Configuration I. Each rule chooses its own capacity with the same $R=1.5$ and welfare objective.}
+\label{fig:investment-sweep}
+\end{figure}
+
+The figure also shows why capacity alone is the wrong scorecard. A lower $K_M$ is not evidence of underinvestment when the change in allocation raises service at that capacity. Conversely, a service increase does not settle the policy choice when the operating-cost trade-off places $D$ below the net-value boundary.
+
+\subsection{State-dependent release and the two values of capacity}\label{subsec:numerical-release}
+
+Figure~\ref{fig:state-release} evaluates the release conditions in \eqref{eq:type-release-kkt}--\eqref{eq:type-invest-envelope}. Installed capacity is $K=5.5$. For demand intercepts below approximately $15.01$, the platform releases less than the installed amount. Capacity is valuable in these states because it lowers congestion burdens at the chosen release. Once demand makes the release cap bind, the scarcity multiplier becomes positive and adds a second investment return. Idle installed capacity in a low-demand state therefore coexists with a positive congestion-relief value; it is not, by itself, evidence that the facility was overbuilt.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\linewidth]{generated/fig_state_release.pdf}
+\caption{State-contingent release and the marginal value of installed capacity under Configuration II. The selected affine auction domain holds across the displayed demand range.}
+\label{fig:state-release}
+\end{figure}
+
+The small separation between the two release paths is itself informative. Allocation improves service conversion mainly through who receives the released resource; congestion and the demand state govern how much resource is released. The two decisions interact through the marginal value of service but remain distinct policy instruments.
+
+\subsection{Multivariate design-space stress test}\label{subsec:numerical-scan}
+
+The final experiment varies nine inputs jointly. The fixed seed is 20261014. Independent uniform draws use $a\in[8,12]$, $b\in[0.7,1.3]$, $k\in[0.16,0.40]$, $\varepsilon\in[0.03,0.18]$, $c_1-c_2\in[-0.3,1.5]$, $B\in[0.05,0.25]$, $\gamma\in[0,0.30]$, $S\in[2.2,3.8]$, and $R\in[1,2.5]$, with $\rho_2=1$ and $c_2=2$. The scan first applies the model's strict allocation, price, participation, and endpoint-bid screens. Among 30,000 draws, 18,650 have $D>0$ and satisfy the common fixed-release domain. The auction has higher fixed-release welfare in $72.9\%$ of those designs, while equal reservations have higher welfare in $27.1\%$. For the 21,364 positive-$D$ designs satisfying both investment paths, the corresponding optimized-net-value shares are $74.0\%$ and $26.0\%$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\linewidth]{generated/fig_design_space_scan.pdf}
+\caption{Design-space stress test. Blue/green points favor the auction in the displayed value metric; orange points favor equal reservations. The complete 30,000-draw output is included in the replication files.}
+\label{fig:design-scan}
+\end{figure}
+
+These percentages describe coverage of the stated stress-test box, not frequencies in an observed corridor population. Their evidentiary role is sharper: both signs occupy substantial, strictly feasible regions after joint parameter variation. Figure~\ref{fig:design-scan}(a) shows why service gains alone cannot select the access rule. Panel (b) shows the parallel investment result: capital substitution holds throughout the positive-$D$ feasible set, whereas its net-value advantage changes sign at the analytical boundary. The numerical evidence therefore reinforces the paper's decision rule rather than replacing it with a favored scenario.

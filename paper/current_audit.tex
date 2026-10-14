@@ -1,0 +1,74 @@
+\section{Mechanism identification and reproducibility}\label{app:current-audit}
+
+\subsection{Cases that isolate the service-to-capital channel}\label{app:mechanism-cases}
+
+For common resource-cost curvature and $\alpha=1$, the two identities
+\[
+X_M(S)-X_Q(S)=\frac{\varepsilon D}{4F},\qquad
+K_M-K_Q=-\frac{b\bar\rho}{R+z_M}\frac{\varepsilon D}{4F}
+\]
+separate reassignment's service effect from its effect on the marginal return to capacity. Their interpretation is on the common feasible full-release paths of Proposition~\ref{prop:type-quota-investment}. The following cases change one component of that channel at a time; they are algebraic restrictions of the same model, not additional simulated operating scenarios.
+
+\paragraph{Equal service productivity.}
+Set $\varepsilon=0$, retaining $k>0$. Then $F=2k$, $D=c_2-c_1$, and reassignment leaves service and preferred capacity unchanged. At a fixed feasible release,
+\begin{equation}
+X_M-X_Q=0,\qquad K_M-K_Q=0,\qquad
+W_M-W_Q=\frac{3(c_2-c_1)^2}{32k}.
+\label{eq:mechanism-equal-productivity}
+\end{equation}
+Cost-efficient reassignment can still improve welfare. Its gain is constant in release on this interior path and therefore does not change the marginal investment return. This distinguishes the capital-substitution mechanism from a conventional cost-allocation gain.
+
+\paragraph{Constant-price limit.}
+As $b\to0$ through a feasible neighborhood, hold $a$, costs, and productivities fixed. Price no longer falls when service expands. The limits are
+\begin{equation}
+K_M-K_Q\to0,\qquad
+X_M-X_Q\to\frac{\varepsilon D}{8k},\qquad
+W_M-W_Q\to\frac{3D^2}{32k}.
+\label{eq:mechanism-constant-price}
+\end{equation}
+Reassignment may still increase service, but that extra service no longer reduces the marginal value of expanding capacity. This is a continuous boundary comparison; the main demand specification has $b>0$.
+
+\paragraph{Offsetting productivity and cost.}
+For $D=a\varepsilon+c_2-c_1=0$, the auction assigns $x_{1M}=S/2$. Thus $M$ and $Q$ have the same service, welfare, and preferred capacity under the welfare objective. This equality need not mean identical operators: a productivity advantage can be offset by a linear operating-cost premium. Auction payments can still differ from the zero-charge reservations, so the statement concerns allocation and welfare at $\alpha=1$, not equality of all private payoffs or of revenue-weighted investment.
+
+\subsection{Scenario inputs and their analytical roles}
+
+Table~\ref{tab:current-scenario-inputs} records every input used in the two main-text policy comparisons. The service and resource units are normalized. Because the model is expressed in $\rho_i$, $c_i$, and $k_i$, it requires no separate numerical choice of $d_i$, $h_i$, $t_i$, or $\kappa_i$; those quantities matter when mapping an application into the normalized coefficients. Likewise, the full-release investment comparison depends on $R=r(1-\delta)$, so it does not require arbitrary separate choices of $r$ and $\delta$.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Illustrative inputs and their roles in the policy comparison.}\label{tab:current-scenario-inputs}
+\begin{tabular}{P{0.19\linewidth}P{0.20\linewidth}P{0.51\linewidth}}
+\toprule
+Input & Value & Analytical role and reason for the choice\\
+\midrule
+$a,b$ & $10,1$ & Normalize demand and maintain positive service prices over the checked resource interval. No empirical demand estimate is asserted.\\
+$\rho_1,\rho_2$ & $1.1,1$ & Introduce a service-productivity difference at a common resource budget. The comparison identifies the effect of this difference, not a measured aircraft productivity ratio.\\
+$k_1,k_2$ & $0.2,0.2$ & Use the common-curvature case and satisfy $k_2>b\rho_2\varepsilon=0.1$. The curvature-screen ratio is two.\\
+$c_2$ & $2$ & Set the common reference linear resource cost.\\
+$c_1$ & A: $2$; B: $2.8$ & A isolates productivity at equal cost; B adds a productivity-associated cost premium. They place $D=1$ and $D=0.2$ on opposite sides of the same fixed-release welfare threshold.\\
+$B,\gamma$ & $0.1,0$ & Include a positive common congestion burden; full release makes it constant per resource unit. The examples do not test the state-dependent release problem.\\
+$S,K$ (Panel A) & $3,3$ & Hold the full resource budget fixed for the allocation comparison.\\
+$\alpha,R$ (Panel B) & $1,1.5$ & Isolate welfare-based investment with the same discounted installation cost under both rules. $K$ and $S=K$ are then chosen on each rule's path.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Each scenario has a distinct role: A illustrates the region with higher service and net social value under $M$, while B separates service improvement from welfare improvement. Both illustrate exact thresholds already proved in Appendix~\ref{app:quota-proofs}. The machine-readable results also retain the $D=0$ and $D<0$ domain checks and the non-strategic comparison used in the analytical development. These are internal checks of stated cases rather than estimates of how frequently any policy region occurs in actual corridors.
+
+\subsection{Numerical experiment archive}\label{app:numerical-archive}
+
+The main-text figures are generated separately from the exact symbolic checks. The script \path{checks/generate_numerical_figures.py} writes five PDF figures and five machine-readable experiment files. The fixed-release, mechanism, investment, and release sweeps retain every plotted point. The design-space file retains all 30,000 draws rather than only the subsample displayed in Figure~\ref{fig:design-scan}. The fixed seed is 20261014.
+
+The scan draws the nine inputs independently from the closed ranges stated in Section~\ref{subsec:numerical-scan}, then applies the maintained-domain tests before computing any reported share. A fixed-release design must have positive allocations, service price, auction price, endpoint bids, and participation under both $M$ and $Q$. An investment design must pass the same tests at both $K_M$ and $K_Q$. The reported shares are conditional on $D>0$ and the corresponding feasible domain. Re-running the script reproduces the counts 18,650 and 21,364 and the four reported policy-region shares.
+
+Configuration II for Figure~\ref{fig:state-release} uses $(b,k,\rho_1,\rho_2,c_1,c_2,B,\gamma,K)=(0.75,0.16,1.16,1,3,2.3,2.2,2.2,5.5)$. The public demand intercept varies on a 241-point grid from 8 to 17. For each state, the script solves the release first-order condition, applies $S_\omega\leq K$, computes the scarcity multiplier, and verifies the selected auction branch. The release cap first binds at the grid value $a_\omega=15.0125$.
+
+\subsection{Common-domain checks and executable calculations}
+
+For each $M$--$Q$ comparison, the scripts verify positive resource allocations, positive service prices, $\eta_i>0$, positive auction price, and strictly positive endpoint bids. They also verify both operators' participation under $Q$ and $M$. Investment checks evaluate these conditions at $K_M$ and $K_Q$. Along their full-release connecting interval, the relevant allocation, price, endpoint-bid, and per-resource participation expressions are affine; the endpoint tests therefore cover that interval, as established in Appendix~\ref{app:quota-interval}. The scripts separately check the investment first-order conditions and strict concavity.
+
+The source bundle provides three exact-check modules and one numerical-experiment module. The auction module checks clearing and the unilateral-deviation profit envelope. The welfare and investment module checks allocation, investment, state-release derivatives, and the conversion from flight to resource units. The quota module checks participation, both $M$--$Q$ thresholds, service at each rule's preferred capacity, and the mechanism-isolation identities above. The numerical module regenerates the figures, parameter sweeps, and fixed-seed design scan. The package README maps these modules to their source files.
+
+The entry point \path{checks/run_checks.py} executes all three with exact symbolic and rational arithmetic. The output file \path{checks/results.json} records expressions, scenario values, and named domain checks. The calculations verify the model's algebra and the examples' applicable regions. Equilibrium selection and empirical parameter estimation are separate questions from these checks.
+\FloatBarrier

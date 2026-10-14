@@ -1,0 +1,50 @@
+{
+  "seed": 20261014,
+  "draws": 30000,
+  "ranges": {
+    "a": [
+      8.0,
+      12.0
+    ],
+    "b": [
+      0.7,
+      1.3
+    ],
+    "k": [
+      0.16,
+      0.4
+    ],
+    "epsilon": [
+      0.03,
+      0.18
+    ],
+    "cost_premium": [
+      -0.3,
+      1.5
+    ],
+    "B": [
+      0.05,
+      0.25
+    ],
+    "gamma": [
+      0.0,
+      0.3
+    ],
+    "S": [
+      2.2,
+      3.8
+    ],
+    "R": [
+      1.0,
+      2.5
+    ]
+  },
+  "fixed_domain_positive_D": 18650,
+  "fixed_domain_positive_D_share_of_draws": 0.6216666666666667,
+  "auction_higher_fixed_welfare_share": 0.7292761394101877,
+  "quota_higher_fixed_welfare_share": 0.27072386058981235,
+  "investment_domain_positive_D": 21364,
+  "investment_domain_positive_D_share_of_draws": 0.7121333333333333,
+  "auction_higher_optimized_net_value_share": 0.739608687511702,
+  "quota_higher_optimized_net_value_share": 0.26039131248829805
+}

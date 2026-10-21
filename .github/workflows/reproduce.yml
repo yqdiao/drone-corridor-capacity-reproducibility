@@ -25,3 +25,5 @@ jobs:
             sections/generated/*.pdf
             checks/numerical_results/*.json
             checks/results.json
+            data/additional_audit/*.json
+            data/additional_audit/*.csv

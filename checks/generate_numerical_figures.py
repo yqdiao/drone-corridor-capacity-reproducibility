@@ -25,14 +25,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
 FIGURE_DIR = ROOT / "sections" / "generated"
 RESULT_DIR = ROOT / "checks" / "numerical_results"
-RANDOM_SEED = 20261014
-DESIGN_DRAWS = 30000
 FIGURE_DIR.mkdir(parents=True, exist_ok=True)
 RESULT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -45,30 +44,21 @@ LIGHT_GREY = "#e7e7e7"
 
 plt.rcParams.update(
     {
-        "font.size": 9,
-        "axes.titlesize": 9.5,
-        "axes.labelsize": 9,
-        "legend.fontsize": 8,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
+        "font.family": "DejaVu Sans",
+        "font.size": 10,
+        "axes.titlesize": 10.5,
+        "axes.labelsize": 10,
+        "legend.fontsize": 10,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
         "axes.spines.top": False,
         "axes.spines.right": False,
         "figure.dpi": 160,
         "savefig.bbox": "tight",
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
     }
 )
-
-
-def save_pdf(fig: plt.Figure, filename: str) -> None:
-    """Write a PDF without clock-dependent metadata.
-
-    Removing creation and modification timestamps makes repeated runs with the
-    pinned environment byte-for-byte stable on the same platform.
-    """
-    fig.savefig(
-        FIGURE_DIR / filename,
-        metadata={"Creator": "generate_numerical_figures.py", "CreationDate": None, "ModDate": None},
-    )
 
 
 @dataclass(frozen=True)
@@ -293,12 +283,13 @@ def policy_regions() -> dict[str, float]:
             else:
                 regime[yi, xi] = 1
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.25, 2.45))
+    fig, axes = plt.subplots(1, 3, figsize=(7.25, 2.8))
     ax = axes[0]
     ax.axhline(0, color="black", linewidth=0.7)
     ax.plot(ds, [r["service_M_minus_Q"] for r in rows], color=BLUE, linewidth=1.8)
     ax.axvline(0, color=GREY, linestyle="--", linewidth=0.8)
-    ax.set(xlabel=r"Service--cost advantage $D$", ylabel=r"$X_M-X_Q$", title="(a) Service effect")
+    ax.set(xlabel=r"Service-cost gap $D$", ylabel=r"$X_M-X_Q$", title="(a) Service gain")
+    ax.set_xticks([-0.5, 0, 0.5, 1, 1.5])
 
     ax = axes[1]
     welfare = np.array([r["welfare_M_minus_Q"] for r in rows])
@@ -307,8 +298,10 @@ def policy_regions() -> dict[str, float]:
     ax.plot(ds, welfare, color=PURPLE, linewidth=1.8)
     ax.axvline(0, color=GREY, linestyle="--", linewidth=0.8)
     ax.axvline(threshold, color=ORANGE, linestyle="--", linewidth=1.1)
-    ax.text(threshold + 0.035, min(welfare) * 0.82, "welfare\nthreshold", color=ORANGE, fontsize=7)
-    ax.set(xlabel=r"Service--cost advantage $D$", ylabel=r"$W_M-W_Q$", title="(b) Welfare effect")
+    ax.axvspan(0, threshold, color=ORANGE, alpha=0.09, zorder=0)
+    ax.text(0.03, 0.94, "Threshold\n"+rf"$D^*={threshold:.3f}$", transform=ax.transAxes, color=ORANGE, fontsize=10, va="top", bbox=dict(facecolor="white", edgecolor="none", alpha=0.9, pad=0.7))
+    ax.set(xlabel=r"Service-cost gap $D$", ylabel=r"$W_M-W_Q$", title="(b) Welfare gain")
+    ax.set_xticks([-0.5, 0, 0.5, 1, 1.5])
 
     ax = axes[2]
     cmap = mcolors.ListedColormap([LIGHT_GREY, "#f3c48d", "#91bad6"])
@@ -322,20 +315,24 @@ def policy_regions() -> dict[str, float]:
         vmax=2,
         interpolation="nearest",
     )
-    ax.plot(eps_grid, base.a * eps_grid, color="white", linewidth=0.9, linestyle=":", label=r"$D=0$")
+    ax.contourf(eps_grid, premium_grid, regime, levels=[0.5, 1.5], colors="none", hatches=["////"], alpha=0)
+    ax.plot(eps_grid, base.a * eps_grid, color=GREY, linewidth=1.0, linestyle=":")
+    threshold_curve = [quantities(Parameters(**{**asdict(base), "rho1": base.rho2+float(eps), "k": 0.22}))["fixed_threshold"] for eps in eps_grid]
+    ax.plot(eps_grid, base.a * eps_grid - np.array(threshold_curve), color=GREY, linewidth=0.9)
+    ax.text(0.115, 1.55, r"$M$", color=BLUE, fontsize=11, ha="center")
+    ax.text(0.14, 0.35, r"$M$", color=BLUE, fontsize=11, ha="center")
+    ax.text(0.15, 1.1, r"$Q$", color="#7c430e", fontsize=11, ha="center", bbox=dict(facecolor="#f3c48d", edgecolor="none", pad=0.5))
     ax.set(
         xlabel=r"Productivity gap $\varepsilon$",
         ylabel=r"Cost premium $c_1-c_2$",
         title="(c) Policy regions",
     )
-    handles = [
-        plt.Line2D([0], [0], color="#91bad6", lw=6, label=r"$M$ higher welfare"),
-        plt.Line2D([0], [0], color="#f3c48d", lw=6, label=r"$Q$ higher welfare"),
-        plt.Line2D([0], [0], color=LIGHT_GREY, lw=6, label="outside domain"),
-    ]
-    ax.legend(handles=handles, loc="lower left", frameon=False, fontsize=6.5)
-    fig.tight_layout(w_pad=1.2)
-    save_pdf(fig, "fig_policy_regions.pdf")
+    handles = [Patch(facecolor="#91bad6", label=r"$M$ higher welfare"), Patch(facecolor="#f3c48d", edgecolor="#7c430e", linewidth=0, hatch="////", label=r"$Q$ higher welfare")]
+    if (regime == 0).any():
+        handles.append(Patch(facecolor=LIGHT_GREY, label="Outside domain"))
+    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.30), frameon=False, fontsize=10, ncol=1)
+    fig.tight_layout(w_pad=1.2, pad=0.6)
+    fig.savefig(FIGURE_DIR / "fig_policy_regions.pdf")
     plt.close(fig)
     return {"fixed_threshold_baseline": threshold}
 
@@ -363,33 +360,33 @@ def mechanism_comparison() -> None:
         )
     write_rows(RESULT_DIR / "mechanism_comparison_sweep.csv", rows)
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.65))
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.25))
     ax = axes[0]
-    ax.plot(ds, [r["share_W"] for r in rows], color=GREEN, lw=2, label=r"Efficient $W$")
+    ax.plot(ds, [r["share_W"] for r in rows], color=GREEN, linestyle="-.", lw=2, label=r"Efficient $W$")
     ax.plot(ds, [r["share_M"] for r in rows], color=BLUE, lw=1.7, label=r"Auction $M$")
-    ax.plot(ds, [r["share_T"] for r in rows], color=PURPLE, lw=1.5, label=r"Unshifted bids $T$")
+    ax.plot(ds, [r["share_T"] for r in rows], color=PURPLE, linestyle=":", lw=2, label=r"Unshifted bids $T$")
     ax.plot(ds, [r["share_Q"] for r in rows], color=ORANGE, lw=1.5, linestyle="--", label=r"Equal reservations $Q$")
     ax.set(
-        xlabel=r"Service--cost advantage $D$",
+        xlabel=r"Service-cost gap $D$",
         ylabel="Operator 1 resource share",
         title="(a) Allocation paths",
         ylim=(0, 1),
     )
-    ax.legend(frameon=False, ncol=2, loc="upper left")
+    shared_handles, shared_labels = ax.get_legend_handles_labels()
 
     ax = axes[1]
     ax.plot(ds, [r["loss_Q"] for r in rows], color=ORANGE, lw=1.7, linestyle="--", label=r"$W_W-W_Q$")
     ax.plot(ds, [r["loss_M"] for r in rows], color=BLUE, lw=1.7, label=r"$W_W-W_M$")
-    ax.plot(ds, [r["loss_T"] for r in rows], color=PURPLE, lw=1.5, label=r"$W_W-W_T$")
+    ax.plot(ds, [r["loss_T"] for r in rows], color=PURPLE, linestyle=":", lw=2, label=r"$W_W-W_T$")
     ax.set(
-        xlabel=r"Service--cost advantage $D$",
-        ylabel="Welfare loss from efficient split",
-        title="(b) Distance from the allocation target",
+        xlabel=r"Service-cost gap $D$",
+        ylabel=r"Welfare gap $W_W-W_j$",
+        title="(b) Distance from efficient allocation",
     )
     ax.set_ylim(bottom=0)
-    ax.legend(frameon=False)
-    fig.tight_layout(w_pad=1.3)
-    save_pdf(fig, "fig_mechanism_comparison.pdf")
+    fig.legend(shared_handles, shared_labels, frameon=False, ncol=2, loc="lower center", bbox_to_anchor=(0.5, -0.01), fontsize=10)
+    fig.tight_layout(w_pad=1.3, rect=(0, 0.17, 1, 1))
+    fig.savefig(FIGURE_DIR / "fig_mechanism_comparison.pdf")
     plt.close(fig)
 
 
@@ -404,17 +401,28 @@ def investment_sweep() -> dict[str, float]:
         rows.append({"D": d, **inv})
     write_rows(RESULT_DIR / "investment_sweep.csv", rows)
 
-    fig, axes = plt.subplots(1, 3, figsize=(7.35, 2.45))
+    # Locate the positive crossing on the unchanged sweep for the plot label.
+    positive_crossings = []
+    for left, right in zip(rows[:-1], rows[1:]):
+        if left["D"] > 0 and left["net_value_gap"] * right["net_value_gap"] <= 0:
+            x0, x1 = left["D"], right["D"]
+            y0, y1 = left["net_value_gap"], right["net_value_gap"]
+            positive_crossings.append(x0 - y0 * (x1 - x0) / (y1 - y0))
+    net_crossing = positive_crossings[0] if positive_crossings else float("nan")
+
+    fig, axes = plt.subplots(1, 3, figsize=(7.35, 2.8))
     ax = axes[0]
     ax.plot(ds, [r["KQ"] for r in rows], color=ORANGE, linestyle="--", lw=1.7, label=r"$K_Q$")
     ax.plot(ds, [r["KM"] for r in rows], color=BLUE, lw=1.7, label=r"$K_M$")
-    ax.set(xlabel=r"Service--cost advantage $D$", ylabel="Installed capacity", title="(a) Capacity choice")
+    ax.axvline(0, color=GREY, linestyle=":", lw=0.8)
+    ax.set(xlabel=r"Service-cost gap $D$", ylabel="Installed capacity", title="(a) Capacity choice")
     ax.legend(frameon=False)
 
     ax = axes[1]
     ax.plot(ds, [r["XQ_own"] for r in rows], color=ORANGE, linestyle="--", lw=1.7, label=r"$X_Q(K_Q)$")
     ax.plot(ds, [r["XM_own"] for r in rows], color=BLUE, lw=1.7, label=r"$X_M(K_M)$")
-    ax.set(xlabel=r"Service--cost advantage $D$", ylabel="Delivered service", title="(b) Service at own capacity")
+    ax.axvline(0, color=GREY, linestyle=":", lw=0.8)
+    ax.set(xlabel=r"Service-cost gap $D$", ylabel="Delivered service", title="(b) Service at own capacity")
     ax.legend(frameon=False)
 
     ax = axes[2]
@@ -423,19 +431,18 @@ def investment_sweep() -> dict[str, float]:
     ax.plot(ds, gap, color=GREEN, lw=1.8)
     ax.fill_between(ds, 0, gap, where=gap >= 0, color="#91c7a8", alpha=0.45)
     ax.fill_between(ds, 0, gap, where=gap < 0, color="#f3c48d", alpha=0.5)
-    ax.set(xlabel=r"Service--cost advantage $D$", ylabel=r"$\mathcal{V}_M-\mathcal{V}_Q$", title="(c) Optimized net value")
+    ax.axvline(0, color=GREY, linestyle=":", lw=0.8)
+    ax.axvline(net_crossing, color=ORANGE, linestyle="--", lw=1.0)
+    ax.axvspan(0, net_crossing, color=ORANGE, alpha=0.09, zorder=0)
+    ax.text(0.04, 0.94, "Crossing\n"+rf"$D\approx{net_crossing:.3f}$", transform=ax.transAxes, color=ORANGE, fontsize=10, va="top", bbox=dict(facecolor="white", edgecolor="none", alpha=0.9, pad=0.7))
+    ax.set(xlabel=r"Service-cost gap $D$", ylabel=r"$\mathcal{V}_M-\mathcal{V}_Q$", title="(c) Optimized net value")
+    for ax in axes:
+        ax.set_xticks([-0.5, 0, 0.5, 1, 1.5])
     fig.tight_layout(w_pad=1.15)
-    save_pdf(fig, "fig_investment_substitution.pdf")
+    fig.savefig(FIGURE_DIR / "fig_investment_substitution.pdf")
     plt.close(fig)
 
-    # Linear interpolation of the positive crossing is used only for reporting.
-    positive_crossings = []
-    for left, right in zip(rows[:-1], rows[1:]):
-        if left["D"] > 0 and left["net_value_gap"] * right["net_value_gap"] <= 0:
-            x0, x1 = left["D"], right["D"]
-            y0, y1 = left["net_value_gap"], right["net_value_gap"]
-            positive_crossings.append(x0 - y0 * (x1 - x0) / (y1 - y0))
-    return {"positive_net_value_crossing": positive_crossings[0] if positive_crossings else float("nan")}
+    return {"positive_net_value_crossing": net_crossing}
 
 
 def release_for_state(p: Parameters) -> dict[str, float | bool]:
@@ -503,23 +510,37 @@ def state_release() -> dict[str, float]:
         rows.append({"a": a, **release_for_state(p)})
     write_rows(RESULT_DIR / "state_release_sweep.csv", rows)
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.65))
+    eps = base.rho1 - base.rho2
+    rho_bar = (base.rho1 + base.rho2) / 2
+    F = 2 * base.k + base.b * eps**2
+    g = base.b * eps * (base.rho1 + base.rho2)
+    z = base.b * rho_bar**2 + base.k
+    binding_a = (z * base.K + 2 * base.B + 1.5 * base.gamma + (base.c1 + base.c2) / 2 + g * (base.c2 - base.c1) / (8 * F)) / (rho_bar - g * eps / (8 * F))
+
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.35))
     ax = axes[0]
     ax.axhline(base.K, color=GREY, linestyle=":", lw=1.0, label=r"Installed $K$")
     ax.plot(demand, [r["SQ"] for r in rows], color=ORANGE, linestyle="--", lw=1.7, label=r"$S_Q(a)$")
     ax.plot(demand, [r["SM"] for r in rows], color=BLUE, lw=1.8, label=r"$S_M(a)$")
-    ax.fill_between(demand, [r["SM"] for r in rows], base.K, color="#c9dcec", alpha=0.4, label="idle installed capacity")
+    ax.fill_between(demand, [r["SM"] for r in rows], base.K, color="#c9dcec", alpha=0.4, label=r"Spare $K-S_M$")
+    ax.axvline(binding_a, color=GREY, linestyle="--", lw=0.8)
+    ax.text(0.06, 0.83, "Auction cap binds at\n"+rf"$a_\omega\approx{binding_a:.2f}$", transform=ax.transAxes, color=GREY, fontsize=10, va="top")
     ax.set(xlabel=r"Demand intercept $a_\omega$", ylabel="Released resource", title="(a) State-contingent release")
-    ax.legend(frameon=False, loc="lower right")
+    ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.23), ncol=2)
 
     ax = axes[1]
     relief = np.array([r["congestion_relief_M"] for r in rows])
     scarcity = np.array([r["muM"] for r in rows])
-    ax.stackplot(demand, relief, scarcity, colors=["#91c7a8", "#9f8ac4"], labels=["congestion relief", "binding-cap scarcity value"], alpha=0.9)
-    ax.set(xlabel=r"Demand intercept $a_\omega$", ylabel="Marginal value of capacity", title="(b) Two investment margins")
-    ax.legend(frameon=False, loc="upper left")
+    areas = ax.stackplot(demand, relief, scarcity, colors=["#91c7a8", "#c4b7d8"], labels=["Congestion relief", "Binding-cap scarcity value"], alpha=0.9)
+    areas[1].set_hatch("///")
+    areas[1].set_edgecolor(PURPLE)
+    areas[1].set_linewidth(0)
+    ax.plot(demand, relief+scarcity, color=GREY, lw=0.9)
+    ax.axvline(binding_a, color=GREY, linestyle="--", lw=0.8)
+    ax.set(xlabel=r"Demand intercept $a_\omega$", ylabel="Marginal value of capacity", title=r"(b) Investment margins under $M$")
+    ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.23))
     fig.tight_layout(w_pad=1.4)
-    save_pdf(fig, "fig_state_release.pdf")
+    fig.savefig(FIGURE_DIR / "fig_state_release.pdf")
     plt.close(fig)
 
     first_binding = next(r["a"] for r in rows if r["SM"] >= base.K - 1e-8)
@@ -528,8 +549,8 @@ def state_release() -> dict[str, float]:
 
 
 def design_scan() -> dict[str, float | int | dict[str, list[float]]]:
-    rng = np.random.default_rng(RANDOM_SEED)
-    n = DESIGN_DRAWS
+    rng = np.random.default_rng(20261014)
+    n = 30000
     ranges = {
         "a": [8.0, 12.0],
         "b": [0.7, 1.3],
@@ -584,7 +605,7 @@ def design_scan() -> dict[str, float | int | dict[str, list[float]]]:
     assert all(r["capacity_reduction"] > 0 and r["service_gap_own_capacity"] > 0 for r in invest)
 
     summary: dict[str, float | int | dict[str, list[float]]] = {
-        "seed": RANDOM_SEED,
+        "seed": 20261014,
         "draws": n,
         "ranges": ranges,
         "fixed_domain_positive_D": len(fixed),
@@ -601,34 +622,26 @@ def design_scan() -> dict[str, float | int | dict[str, list[float]]]:
     # Plot a deterministic subsample for legibility while retaining every draw in CSV.
     fixed_plot = fixed[:: max(1, len(fixed) // 3500)]
     invest_plot = invest[:: max(1, len(invest) // 3500)]
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.7))
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.15))
     ax = axes[0]
-    colors = np.where(np.array([r["welfare_gap_fixed"] for r in fixed_plot]) > 0, BLUE, ORANGE)
-    ax.scatter(
-        [r["service_gap_fixed"] for r in fixed_plot],
-        [r["welfare_gap_fixed"] for r in fixed_plot],
-        c=colors,
-        s=7,
-        alpha=0.35,
-        linewidths=0,
-    )
+    for auction_region, color, marker in [(True, BLUE, "o"), (False, ORANGE, "v")]:
+        selected = [r for r in fixed_plot if (r["welfare_gap_fixed"] > 0) == auction_region]
+        ax.scatter([r["service_gap_fixed"] for r in selected], [r["welfare_gap_fixed"] for r in selected], c=color, s=7, alpha=0.35, linewidths=0, marker=marker)
     ax.axhline(0, color="black", lw=0.7)
-    ax.set(xlabel=r"Fixed-release service gain $X_M-X_Q$", ylabel=r"Fixed-release welfare gap $W_M-W_Q$", title="(a) Allocation trade-off")
+    ax.text(0.02, 0.97, f"Screened $n={len(fixed):,}$; $D>0$", transform=ax.transAxes, va="top", fontsize=10, bbox=dict(facecolor="white", edgecolor="none", alpha=0.8, pad=1))
+    ax.set(xlabel=r"Service gain $X_M-X_Q$", ylabel=r"Welfare gap $W_M-W_Q$", title="(a) Fixed-release decision region")
+    ax.legend(handles=[plt.Line2D([], [], color=BLUE, marker="o", ls="none", markersize=4, label=f"M higher welfare: {100*summary['auction_higher_fixed_welfare_share']:.1f}%"), plt.Line2D([], [], color=ORANGE, marker="v", ls="none", markersize=4, label=f"Q higher welfare: {100*summary['quota_higher_fixed_welfare_share']:.1f}%")], loc="upper left", bbox_to_anchor=(0, -0.22), frameon=False, fontsize=10)
 
     ax = axes[1]
-    colors = np.where(np.array([r["net_value_gap"] for r in invest_plot]) > 0, GREEN, ORANGE)
-    ax.scatter(
-        [r["capacity_reduction"] for r in invest_plot],
-        [r["net_value_gap"] for r in invest_plot],
-        c=colors,
-        s=7,
-        alpha=0.35,
-        linewidths=0,
-    )
+    for auction_region, color, marker in [(True, GREEN, "o"), (False, ORANGE, "v")]:
+        selected = [r for r in invest_plot if (r["net_value_gap"] > 0) == auction_region]
+        ax.scatter([r["capacity_reduction"] for r in selected], [r["net_value_gap"] for r in selected], c=color, s=7, alpha=0.35, linewidths=0, marker=marker)
     ax.axhline(0, color="black", lw=0.7)
-    ax.set(xlabel=r"Capacity reduction $K_Q-K_M$", ylabel=r"Optimized net-value gap $\mathcal{V}_M-\mathcal{V}_Q$", title="(b) Capital substitution")
+    ax.text(0.02, 0.97, f"Screened $n={len(invest):,}$; $D>0$", transform=ax.transAxes, va="top", fontsize=10, bbox=dict(facecolor="white", edgecolor="none", alpha=0.8, pad=1))
+    ax.set(xlabel=r"Capacity saving $K_Q-K_M$", ylabel=r"Net-value gap $\mathcal{V}_M-\mathcal{V}_Q$", title="(b) Investment decision region")
+    ax.legend(handles=[plt.Line2D([], [], color=GREEN, marker="o", ls="none", markersize=4, label=f"M higher net value: {100*summary['auction_higher_optimized_net_value_share']:.1f}%"), plt.Line2D([], [], color=ORANGE, marker="v", ls="none", markersize=4, label=f"Q higher net value: {100*summary['quota_higher_optimized_net_value_share']:.1f}%")], loc="upper left", bbox_to_anchor=(0, -0.22), frameon=False, fontsize=10)
     fig.tight_layout(w_pad=1.35)
-    save_pdf(fig, "fig_design_space_scan.pdf")
+    fig.savefig(FIGURE_DIR / "fig_design_space_scan.pdf")
     plt.close(fig)
     return summary
 
